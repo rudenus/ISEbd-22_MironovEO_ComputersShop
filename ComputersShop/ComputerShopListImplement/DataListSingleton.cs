@@ -12,12 +12,14 @@ namespace ComputerShopListImplement
         private static DataListSingleton instance;
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
+        public List<WareHouse> Warehouses { get; set; }
         public List<Computer> Computers { get; set; }
         private DataListSingleton()
         {
             Components = new List<Component>();
             Orders = new List<Order>();
             Computers = new List<Computer>();
+            Warehouses = new List<WareHouse>();
         }
         public static DataListSingleton GetInstance()
         {
