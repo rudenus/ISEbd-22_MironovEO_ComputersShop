@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17E11836-C6B6-440E-8278-86627ED70507}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ComputersShopView</RootNamespace>
+    <AssemblyName>ComputersShopView</AssemblyName>
+    <LangVersion>preview</LangVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.10\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.10\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormComputers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComputers.Designer.cs">
+      <DependentUpon>FormComputers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormComponent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComponent.Designer.cs">
+      <DependentUpon>FormComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComponents.Designer.cs">
+      <DependentUpon>FormComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormComputer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComputer.Designer.cs">
+      <DependentUpon>FormComputer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormComputerComponent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComputerComponent.Designer.cs">
+      <DependentUpon>FormComputerComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreateOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreateOrder.Designer.cs">
+      <DependentUpon>FormCreateOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormComponent.resx">
+      <DependentUpon>FormComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComponents.resx">
+      <DependentUpon>FormComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComputer.resx">
+      <DependentUpon>FormComputer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComputerComponent.resx">
+      <DependentUpon>FormComputerComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComputers.resx">
+      <DependentUpon>FormComputers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreateOrder.resx">
+      <DependentUpon>FormCreateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\ComputerShopContracts.StoragesContracts.IComponentStorage.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComputerShopBusinessLogic\ComputerShopBusinessLogic.csproj">
+      <Project>{f667b633-a14c-4b24-af10-50aced98c489}</Project>
+      <Name>ComputerShopBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComputerShopContracts\ComputerShopContracts.csproj">
+      <Project>{8a7958f5-505f-4021-867c-eb63759b1544}</Project>
+      <Name>ComputerShopContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComputerShopListImplement\ComputerShopListImplement.csproj">
+      <Project>{e9f0d0d8-e0ee-4c45-a454-dbff8c85d730}</Project>
+      <Name>ComputerShopListImplement</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
