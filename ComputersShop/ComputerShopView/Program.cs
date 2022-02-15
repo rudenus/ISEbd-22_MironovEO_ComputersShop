@@ -4,7 +4,7 @@ using ComputerShopContracts.BusinessLogicContracts;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopFileImplement;
 using ComputerShopFileImplement.Implements;
-using ComputerShopListImplement.Imlements;
+using ComputersShopFileImplement.Implements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
