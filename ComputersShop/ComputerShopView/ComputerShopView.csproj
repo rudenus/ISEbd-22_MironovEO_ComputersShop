@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Unity" Version="5.11.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ComputersShopBuisnessLogic\ComputersShopBuisnessLogic.csproj" />
+    <ProjectReference Include="..\ComputersShopContracts\ComputersShopContracts.csproj" />
+    <ProjectReference Include="..\ComputersShopFileImplement\ComputersShopFileImplement.csproj" />
+    <ProjectReference Include="..\ComputersShopListImplement\ComputersShopListImplement.csproj" />
+  </ItemGroup>
+
+</Project>
