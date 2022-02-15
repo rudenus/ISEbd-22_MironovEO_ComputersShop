@@ -97,6 +97,7 @@ namespace ComputerShopView
                     Id = id,
                     WareHouseName = textBoxName.Text,
                     ResponsiblePersonFCS = textBoxFIO.Text,
+                    DateCreate = DateTime.Now,
                     WareHouseComponents = wareHouseComponents
                 }) ;
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",

@@ -48,7 +48,7 @@ namespace ComputersShopFileImplement.Implements
         }
         public void Insert(WareHouseBindingModel model)
         {
-            int maxId = source.WareHouses.Count > 0 ? source.Components.Max(rec => rec.Id) : 0;
+            int maxId = source.WareHouses.Count > 0 ? source.WareHouses.Max(rec => rec.Id) : 0;
             var element = new WareHouse
             {
                 Id = maxId + 1,
@@ -114,6 +114,7 @@ namespace ComputersShopFileImplement.Implements
                 Id = wareHouse.Id,
                 WareHouseName = wareHouse.WareHouseName,
                 ResponsiblePersonFIO = wareHouse.ResponsiblePersonFCS,
+                DateCreate = wareHouse.DateCreate,
                 WareHouseComponents = wareHouse.WareHouseComponents
      .ToDictionary(recPC => recPC.Key, recPC =>
      (source.Components.FirstOrDefault(recC => recC.Id ==
