@@ -178,5 +178,11 @@ namespace ComputerShopListImplement.Imlements
                 }
             }
         }
+
+        public bool TakeFromWareHouses(Dictionary<int, (string, int)> materials, int reinforcedCount)
+        {
+            Console.WriteLine("Еще не реализован");
+            return false;
+        }
     }
 }

@@ -121,5 +121,44 @@ namespace ComputersShopFileImplement.Implements
     recPC.Key)?.ComponentName, recPC.Value))
             };
         }
+        public bool TakeFromWareHouses(Dictionary<int, (string, int)> components, int reinforcedCount)
+        {
+            foreach (var component in components)
+            {
+                int count = source.WareHouses.Where(comp => comp.WareHouseComponents.ContainsKey(component.Key)).Sum(comp => comp.WareHouseComponents[component.Key]);
+
+                if (count < component.Value.Item2 * reinforcedCount)
+                {
+                    return false;
+                }
+            }
+
+            foreach (var component in components)
+            {
+                int count = component.Value.Item2 * reinforcedCount;
+                IEnumerable<WareHouse> wareHouses = source.WareHouses.Where(comp => comp.WareHouseComponents.ContainsKey(component.Key));
+
+                foreach (WareHouse wareHouse in wareHouses)
+                {
+                    if (wareHouse.WareHouseComponents[component.Key] <= count)
+                    {
+                        count -= wareHouse.WareHouseComponents[component.Key];
+                        wareHouse.WareHouseComponents.Remove(component.Key);
+                    }
+                    else
+                    {
+                        wareHouse.WareHouseComponents[component.Key] -= count;
+                        count = 0;
+                    }
+
+                    if (count == 0)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }
