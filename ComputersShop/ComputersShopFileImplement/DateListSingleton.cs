@@ -63,9 +63,9 @@ namespace ComputerShopFileImplement
         private List<Order> LoadOrders()
         {
             var list = new List<Order>();
-            if (File.Exists(ComponentFileName))
+            if (File.Exists(OrderFileName))
             {
-                var xDocument = XDocument.Load(ComponentFileName);
+                var xDocument = XDocument.Load(OrderFileName);
                 var xElements = xDocument.Root.Elements("Order").ToList();
                 foreach (var elem in xElements)
                 {
