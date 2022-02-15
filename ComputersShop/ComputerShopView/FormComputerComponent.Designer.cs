@@ -38,17 +38,19 @@
             // 
             // comboBoxComponent
             // 
-            this.comboBoxComponent.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.comboBoxComponent.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBoxComponent.FormattingEnabled = true;
-            this.comboBoxComponent.Location = new System.Drawing.Point(180, 14);
+            this.comboBoxComponent.Location = new System.Drawing.Point(244, 18);
+            this.comboBoxComponent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxComponent.Name = "comboBoxComponent";
             this.comboBoxComponent.Size = new System.Drawing.Size(262, 37);
             this.comboBoxComponent.TabIndex = 0;
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textBoxCount.Location = new System.Drawing.Point(180, 72);
+            this.textBoxCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxCount.Location = new System.Drawing.Point(244, 91);
+            this.textBoxCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(262, 34);
             this.textBoxCount.TabIndex = 1;
@@ -56,8 +58,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(12, 75);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(12, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 29);
             this.label1.TabIndex = 2;
@@ -66,19 +68,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label2.Location = new System.Drawing.Point(12, 17);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(12, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 29);
+            this.label2.Size = new System.Drawing.Size(205, 29);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Компонент";
+            this.label2.Text = "Комплектующая";
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.buttonCancel.Location = new System.Drawing.Point(328, 127);
+            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonCancel.Location = new System.Drawing.Point(376, 159);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(130, 35);
+            this.buttonCancel.Size = new System.Drawing.Size(130, 44);
             this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -86,10 +89,11 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.buttonSave.Location = new System.Drawing.Point(138, 127);
+            this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonSave.Location = new System.Drawing.Point(171, 159);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(165, 35);
+            this.buttonSave.Size = new System.Drawing.Size(165, 44);
             this.buttonSave.TabIndex = 5;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -97,15 +101,16 @@
             // 
             // FormProductComponent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 179);
+            this.ClientSize = new System.Drawing.Size(575, 224);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.comboBoxComponent);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormProductComponent";
             this.Text = "FormComputerComponent";
             this.ResumeLayout(false);
