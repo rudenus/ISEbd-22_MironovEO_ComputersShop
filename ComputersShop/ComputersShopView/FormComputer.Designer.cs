@@ -98,7 +98,7 @@
             this.groupBox1.Size = new System.Drawing.Size(867, 341);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Компоненты";
+            this.groupBox1.Text = "Комплектующие";
             // 
             // buttonRef
             // 
@@ -169,7 +169,7 @@
             // 
             // ColumnName
             // 
-            this.ColumnName.HeaderText = "Название компонента";
+            this.ColumnName.HeaderText = "Название Комплектующей";
             this.ColumnName.MinimumWidth = 6;
             this.ColumnName.Name = "ColumnName";
             this.ColumnName.Width = 300;
@@ -220,7 +220,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormComputer";
-            this.Text = "Изделие";
+            this.Text = "Компьютер";
             this.Load += new System.EventHandler(this.FormProduct_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();

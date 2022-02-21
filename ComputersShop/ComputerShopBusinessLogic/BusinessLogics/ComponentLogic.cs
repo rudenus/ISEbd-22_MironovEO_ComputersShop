@@ -38,7 +38,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             });
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть компонент с таким названием");
+                throw new Exception("Уже есть комплектующая с таким названием");
             }
             if (model.Id.HasValue)
             {

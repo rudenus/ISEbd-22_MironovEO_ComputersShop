@@ -1,5 +1,7 @@
 ﻿using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.BusinessLogicContracts;
+using ComputerShopView;
+using ComputersShopView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -126,6 +128,18 @@ namespace ComputersShopView
         private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormWareHouses>();
+            form.ShowDialog();
+        }
+
+        private void пополнениеСкладаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormReplenishmentWareHouse>();
+            form.ShowDialog();
         }
     }
 
