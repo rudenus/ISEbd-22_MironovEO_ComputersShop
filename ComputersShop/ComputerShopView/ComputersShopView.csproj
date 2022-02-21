@@ -157,6 +157,10 @@
       <Project>{8a7958f5-505f-4021-867c-eb63759b1544}</Project>
       <Name>ComputerShopContracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ComputerShopFileImplement\ComputerShopFileImplement.csproj">
+      <Project>{aafc7bf7-fa34-4852-b5c1-23f6878e1b5f}</Project>
+      <Name>ComputerShopFileImplement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ComputerShopListImplement\ComputerShopListImplement.csproj">
       <Project>{e9f0d0d8-e0ee-4c45-a454-dbff8c85d730}</Project>
       <Name>ComputerShopListImplement</Name>
