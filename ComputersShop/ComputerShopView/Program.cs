@@ -1,10 +1,9 @@
 ﻿using ComputerShopBusinessLogic.BusinessLogics;
-using ComputerShopBusinessLogic.Interfaces;
 using ComputerShopContracts.BusinessLogicContracts;
 using ComputerShopContracts.StoragesContracts;
-using ComputerShopFileImplement;
-using ComputerShopFileImplement.Implements;
-using ComputersShopFileImplement.Implements;
+using ComputerShopDatabseImplement;
+using ComputerShopDatabseImplement.Implements;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +46,7 @@ namespace ComputersShopView
         }
         private static void ApplicationExit(object sender, EventArgs e)
         {
-            FileDataListSingleton.SaveAll();//need to cut
+            //FileDataListSingleton.SaveAll();//need to cut
         }
         private static IUnityContainer BuildUnityContainer()
     {
@@ -58,17 +57,13 @@ namespace ComputersShopView
         HierarchicalLifetimeManager());
         currentContainer.RegisterType<IComputerStorage, ComputerStorage>(new
         HierarchicalLifetimeManager());
-        currentContainer.RegisterType<IWareHouseStorage, WareHouseStorage>(new
-        HierarchicalLifetimeManager());
         currentContainer.RegisterType<IComponentLogic, ComponentLogic>(new
         HierarchicalLifetimeManager());
         currentContainer.RegisterType<IOrderLogic, OrderLogic>(new
         HierarchicalLifetimeManager());
         currentContainer.RegisterType<IComputerLogic, ComputerLogic>(new
         HierarchicalLifetimeManager());
-        currentContainer.RegisterType<IWareHouseLogic, WareHouseLogic>(new
-        HierarchicalLifetimeManager());
-            return currentContainer;
+        return currentContainer;
     }
 }
 
