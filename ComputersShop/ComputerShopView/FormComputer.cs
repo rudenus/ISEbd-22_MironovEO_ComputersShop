@@ -147,7 +147,7 @@ namespace ComputersShopView
             }
             if (productComponents == null || productComponents.Count == 0)
             {
-                MessageBox.Show("Заполните компоненты", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Заполните комплектующие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }

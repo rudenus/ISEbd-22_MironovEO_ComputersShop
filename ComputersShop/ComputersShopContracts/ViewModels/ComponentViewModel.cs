@@ -10,7 +10,7 @@ namespace ComputerShopContracts.ViewModels
     public class ComponentViewModel
     {
         public int Id { get; set; }
-        [DisplayName("Название компонента")]
+        [DisplayName("Название комплектующей")]
         public string ComponentName { get; set; }
     }
 

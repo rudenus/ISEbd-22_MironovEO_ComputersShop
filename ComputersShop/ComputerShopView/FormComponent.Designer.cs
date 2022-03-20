@@ -84,7 +84,7 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label1);
             this.Name = "FormComponent";
-            this.Text = "Компонент";
+            this.Text = "Комплектующая";
             this.Load += new System.EventHandler(this.FormComponent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

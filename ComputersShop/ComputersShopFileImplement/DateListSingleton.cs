@@ -1,5 +1,6 @@
 ﻿using ComputerShopContracts.Enums;
 using ComputerShopFileImplement.Models;
+using ComputersShopFileImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,14 +14,17 @@ namespace ComputerShopFileImplement
         private readonly string ComponentFileName = "Component.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string ComputerFileName = "Computer.xml";
+        private readonly string WareHouseFileName = "WareHouse.xml";
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Computer> Computers { get; set; }
+        public List<WareHouse> WareHouses { get; set; }
         private FileDataListSingleton()
         {
             Components = LoadComponents();
             Orders = LoadOrders();
             Computers = LoadComputers();
+            WareHouses = LoadWareHouses();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -35,11 +39,12 @@ namespace ComputerShopFileImplement
             GetInstance().SaveComponents();
             GetInstance().SaveComputers();
             GetInstance().SaveOrders();
+            GetInstance().SaveWareHouses();
         }
         ~FileDataListSingleton()
         {
             SaveComponents();
-            SaveOrders();
+            SaveOrders();//dont work
             SaveComputers();
         }
         private List<Component> LoadComponents()
@@ -110,6 +115,34 @@ namespace ComputerShopFileImplement
             }
             return list;
         }
+        private List<WareHouse> LoadWareHouses()
+        {
+            var list = new List<WareHouse>();
+            if (File.Exists(WareHouseFileName))
+            {
+                var xDocument = XDocument.Load(WareHouseFileName);
+                var xElements = xDocument.Root.Elements("WareHouse").ToList();
+                foreach (var elem in xElements)
+                {
+                    var CompComp = new Dictionary<int, int>();
+                    foreach (var component in
+                   elem.Element("WareHouseComponents").Elements("WareHouseComponent").ToList())
+                    {
+                        CompComp.Add(Convert.ToInt32(component.Element("Key").Value),
+                       Convert.ToInt32(component.Element("Value").Value));
+                    }
+                    list.Add(new WareHouse
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        WareHouseName = elem.Element("WareHouseName").Value,
+                        ResponsiblePersonFCS = elem.Element("ResponsiblePersonFCS").Value,
+                        DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
+                        WareHouseComponents = CompComp
+                    });
+                }
+            }
+            return list;
+        }
         private void SaveComponents()
         {
             if (Components != null)
@@ -168,6 +201,31 @@ namespace ComputerShopFileImplement
                 }
                 var xDocument = new XDocument(xElement);
                 xDocument.Save(ComputerFileName);
+            }
+        }
+        private void SaveWareHouses()
+        {
+            if (WareHouses!= null)
+            {
+                var xElement = new XElement("WareHouses");
+                foreach (var wareHouse in WareHouses)
+                {
+                    var wareHouseElement = new XElement("WareHouseComponents");
+                    foreach (var component in wareHouse.WareHouseComponents)
+                    {
+                        wareHouseElement.Add(new XElement("WareHouseComponent",
+                        new XElement("Key", component.Key),
+                        new XElement("Value", component.Value)));
+                    }
+                    xElement.Add(new XElement("WareHouse",
+                     new XAttribute("Id", wareHouse.Id),
+                     new XElement("WareHouseName", wareHouse.WareHouseName),
+                     new XElement("ResponsiblePersonFCS", wareHouse.ResponsiblePersonFCS),
+                     new XElement("DateCreate",wareHouse.DateCreate),
+                     wareHouseElement));
+                }
+                var xDocument = new XDocument(xElement);
+                xDocument.Save(WareHouseFileName);
             }
         }
     }

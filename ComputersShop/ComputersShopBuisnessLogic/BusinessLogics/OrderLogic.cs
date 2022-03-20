@@ -1,4 +1,5 @@
-﻿using ComputerShopContracts.BindingModels;
+﻿using ComputerShopBusinessLogic.Interfaces;
+using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.BusinessLogicContracts;
 using ComputerShopContracts.Enums;
 using ComputerShopContracts.StoragesContracts;
@@ -14,10 +15,13 @@ namespace ComputerShopBusinessLogic.BusinessLogics
     public class OrderLogic : IOrderLogic
     {
         private readonly IOrderStorage _orderStorage;
-
-        public OrderLogic(IOrderStorage orderStorage)
+        private readonly IWareHouseStorage _wareHouseStorage;
+        private readonly IComputerStorage _computerStorage;
+        public OrderLogic(IOrderStorage orderStorage, IWareHouseStorage wareHouseStorage, IComputerStorage computerStorage)
         {
             _orderStorage = orderStorage;
+            _wareHouseStorage = wareHouseStorage;
+            _computerStorage = computerStorage;
         }
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
@@ -55,6 +59,10 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             if (order.Status != OrderStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
+            }
+            if (!_wareHouseStorage.TakeFromWareHouses(_computerStorage.GetElement(new ComputerBindingModel { Id = order.ComputerId }).ComputerComponents, order.Count))
+            {
+                throw new Exception("Недостаточно материалов");
             }
             _orderStorage.Update(new OrderBindingModel
             {
