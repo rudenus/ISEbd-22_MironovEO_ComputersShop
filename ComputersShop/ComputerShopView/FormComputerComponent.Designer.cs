@@ -48,9 +48,8 @@
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxCount.Location = new System.Drawing.Point(230, 91);
-            this.textBoxCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.textBoxCount.Location = new System.Drawing.Point(180, 72);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(262, 34);
             this.textBoxCount.TabIndex = 1;
@@ -77,9 +76,8 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonCancel.Location = new System.Drawing.Point(362, 159);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.buttonCancel.Location = new System.Drawing.Point(328, 127);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(130, 44);
             this.buttonCancel.TabIndex = 4;
@@ -89,9 +87,8 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonSave.Location = new System.Drawing.Point(166, 159);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.buttonSave.Location = new System.Drawing.Point(138, 127);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(165, 44);
             this.buttonSave.TabIndex = 5;
@@ -103,7 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 224);
+            this.ClientSize = new System.Drawing.Size(504, 179);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.label2);

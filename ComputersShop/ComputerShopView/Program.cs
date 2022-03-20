@@ -2,9 +2,9 @@
 using ComputerShopBusinessLogic.Interfaces;
 using ComputerShopContracts.BusinessLogicContracts;
 using ComputerShopContracts.StoragesContracts;
-using ComputerShopFileImplement;
-using ComputerShopFileImplement.Implements;
-using ComputersShopFileImplement.Implements;
+using ComputerShopDatabseImplement;
+using ComputerShopDatabseImplement.Implements;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +47,7 @@ namespace ComputersShopView
         }
         private static void ApplicationExit(object sender, EventArgs e)
         {
-            FileDataListSingleton.SaveAll();//need to cut
+            //FileDataListSingleton.SaveAll();//need to cut
         }
         private static IUnityContainer BuildUnityContainer()
     {
