@@ -127,6 +127,11 @@ namespace ComputersShopView
         {
             LoadData();
         }
+
+        private void списокToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
