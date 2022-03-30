@@ -23,12 +23,18 @@ namespace ComputersShopBuisnessLogic.OfficePackage
                     JustificationType = WordJustificationType.Center
                 }
             });
-            foreach (var component in info.Components)
+            foreach (var computer in info.Computers)
             {
                 CreateParagraph(new WordParagraph
                 {
-                    Texts = new List<(string, WordTextProperties)> {
-                    (component.ComponentName, new WordTextProperties { Size = "24", }) },
+                    Texts = new List<(string, WordTextProperties)> { 
+                        (computer.ComputerName + ": ", new WordTextProperties {
+                        Size = "24",
+                        Bold = true
+                        }),
+                        (Convert.ToInt32(computer.Price).ToString(), new WordTextProperties {
+                        Size = "24"
+                        })},
                     TextProperties = new WordTextProperties
                     {
                         Size = "24",

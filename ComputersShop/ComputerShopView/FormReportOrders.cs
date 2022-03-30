@@ -1,6 +1,6 @@
 ﻿using ComputersShopContracts.BindingModels;
 using ComputersShopContracts.BusinessLogicContracts;
-using Microsoft.Reporting.WebForms;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -21,7 +21,7 @@ namespace ComputerShopView
             };
 
             reportViewer.LocalReport.LoadReportDefinition(new
-           FileStream("ReportOrders.rdlc", FileMode.Open));
+           FileStream("../../../ReportOrders.rdlc", FileMode.Open));
             Controls.Clear();
             Controls.Add(reportViewer);
             Controls.Add(panel);

@@ -1,5 +1,8 @@
 ﻿using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.BusinessLogicContracts;
+using ComputerShopView;
+using ComputersShopContracts.BindingModels;
+using ComputersShopContracts.BusinessLogicContracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,9 +19,11 @@ namespace ComputersShopView
     public partial class FormMain : Form
     {
         private readonly IOrderLogic _orderLogic;
-        public FormMain(IOrderLogic orderLogic)
+        private readonly IReportLogic _reportLogic;
+        public FormMain(IOrderLogic orderLogic, IReportLogic reportLogic)
         {
             InitializeComponent();
+            _reportLogic = reportLogic;
             _orderLogic = orderLogic;
         }
         private void FormMain_Load(object sender, EventArgs e)
@@ -130,7 +135,29 @@ namespace ComputersShopView
 
         private void списокToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                _reportLogic.SaveComponentsToWordFile(new ReportBindingModel
+                {
+                    FileName = dialog.FileName
+                });
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            }
 
+        }
+
+        private void компонентыПоИзделиямToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormReportComputerComponents>();
+            form.ShowDialog();
+        }
+
+        private void списокЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormReportOrders>();
+            form.ShowDialog();
         }
     }
 

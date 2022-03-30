@@ -35,26 +35,20 @@ namespace ComputersShopBuisnessLogic.BusinessLogics
         }
         public List<ReportComputerComponentViewModel> GetComputerComponent()
         {
-            var components = _componentStorage.GetFullList();
             var Computers = _ComputerStorage.GetFullList();
             var list = new List<ReportComputerComponentViewModel>();
-            foreach (var component in components)
+            foreach (var Computer in Computers)
             {
                 var record = new ReportComputerComponentViewModel
                 {
-                    ComponentName = component.ComponentName,
-                    Computers = new List<Tuple<string, int>>(),
+                    ComputerName = Computer.ComputerName,
+                    Components = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var Computer in Computers)
+                foreach (var component in Computer.ComputerComponents)
                 {
-                    if (Computer.ComputerComponents.ContainsKey(component.Id))
-                    {
-                        record.Computers.Add(new Tuple<string, int>(Computer.ComputerName,
-                       Computer.ComputerComponents[component.Id].Item2));
-                        record.TotalCount +=
-                       Computer.ComputerComponents[component.Id].Item2;
-                    }
+                    record.Components.Add(new Tuple<string, int>(component.Value.Item1, component.Value.Item2));
+                    record.TotalCount += component.Value.Item2;
                 }
                 list.Add(record);
             }
@@ -93,7 +87,7 @@ namespace ComputersShopBuisnessLogic.BusinessLogics
             {
                 FileName = model.FileName,
                 Title = "Список компонент",
-                Components = _componentStorage.GetFullList()
+                Computers = _ComputerStorage.GetFullList()
             });
         }
         /// <summary>

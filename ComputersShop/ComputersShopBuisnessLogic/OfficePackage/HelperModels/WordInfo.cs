@@ -11,7 +11,7 @@ namespace ComputersShopBuisnessLogic.OfficePackage.HelperModels
     {
         public string FileName { get; set; }
         public string Title { get; set; }
-        public List<ComponentViewModel> Components { get; set; }
+        public List<ComputerViewModel> Computers { get; set; }
     }
 
 }
