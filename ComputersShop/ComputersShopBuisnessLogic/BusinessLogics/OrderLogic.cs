@@ -37,6 +37,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             {
                 ComputerId = model.ComputerId,
                 Count = model.Count,
+                ClientId =  model.ClientId,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
                 Status = OrderStatus.Принят

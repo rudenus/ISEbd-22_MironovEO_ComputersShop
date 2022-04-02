@@ -1,4 +1,5 @@
 ﻿using ComputerShopListImplement.Models;
+using ComputersShopListImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace ComputerShopListImplement
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Computer> Computers { get; set; }
+        public List<Client> Clients { get; set; }
         private DataListSingleton()
         {
             Components = new List<Component>();
             Orders = new List<Order>();
+            Clients = new List<Client>();
             Computers = new List<Computer>();
         }
         public static DataListSingleton GetInstance()

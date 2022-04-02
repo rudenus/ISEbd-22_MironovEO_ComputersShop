@@ -40,7 +40,7 @@ namespace ComputersShopView
                     dataGridView.Rows.Clear();
                     foreach (var order in list)
                     {
-                        dataGridView.Rows.Add(new object[] { order.Id, order.ComputerId, order.ComputerName, order.Count, order.Sum,
+                        dataGridView.Rows.Add(new object[] { order.Id, order.ComputerId, order.ComputerName,order.ClientFIO, order.Count, order.Sum,
                             order.Status,order.DateCreate, order.DateImplement});
                     }
                 }
@@ -157,6 +157,12 @@ namespace ComputersShopView
         private void списокЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormReportOrders>();
+            form.ShowDialog();
+        }
+
+        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormClients>();
             form.ShowDialog();
         }
     }

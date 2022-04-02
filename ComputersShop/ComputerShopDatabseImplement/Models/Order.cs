@@ -15,6 +15,7 @@ namespace ComputerShopDatabseImplement.Models
         public int ComputerId { get; set; }
         [Required]
         public int Count { get; set; }
+        public int ClientId { get; set; }
         [Required]
         public decimal Sum { get; set; }
         [Required]
@@ -23,5 +24,6 @@ namespace ComputerShopDatabseImplement.Models
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
         public virtual Computer Computer { get; set; }
+        public virtual Client Client { get; set; }
     }
 }
