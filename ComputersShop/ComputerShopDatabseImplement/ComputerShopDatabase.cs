@@ -15,7 +15,7 @@ namespace ComputerShopDatabseImplement
             //Database.EnsureCreated();
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ComputerShopDatabase;Trusted_Connection=True");
+                optionsBuilder.UseSqlServer(@"Server=IS-429-00\SQLEXPRESS;Database=ComputerShopDatabaseHard;Trusted_Connection=True");
             }
             base.OnConfiguring(optionsBuilder);
             
