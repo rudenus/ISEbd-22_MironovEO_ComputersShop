@@ -41,7 +41,7 @@ namespace ComputerShopDatabseImplement.Implements
             using (ComputerShopDatabase context = new ComputerShopDatabase())
             {
                 return context.Orders.Include(rec => rec.Computer)
-                .Where(rec => rec.ComputerId == model.ComputerId)
+                .Where(rec => rec.Id.Equals(model.Id) || rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,

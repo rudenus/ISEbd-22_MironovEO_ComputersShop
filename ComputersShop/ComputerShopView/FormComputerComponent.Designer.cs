@@ -1,6 +1,6 @@
 ﻿namespace ComputersShopView
 {
-    partial class FormProductComponent
+    partial class FormComputerComponent
     {
         /// <summary>
         /// Required designer variable.
@@ -96,7 +96,7 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
-            // FormProductComponent
+            // FormComputerComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -108,7 +108,7 @@
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.comboBoxComponent);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FormProductComponent";
+            this.Name = "FormComputerComponent";
             this.Text = "FormComputerComponent";
             this.ResumeLayout(false);
             this.PerformLayout();

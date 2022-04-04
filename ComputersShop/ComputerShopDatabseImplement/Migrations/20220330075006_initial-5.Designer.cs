@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComputerShopDatabseImplement.Migrations
 {
     [DbContext(typeof(ComputerShopDatabase))]
-    [Migration("20220404062037_3-hard")]
-    partial class _3hard
+    [Migration("20220330075006_initial-5")]
+    partial class initial5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ComputerVersion", "5.0.14")
+                .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Component", b =>
@@ -113,54 +113,6 @@ namespace ComputerShopDatabseImplement.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("ComputerShopDatabseImplement.Models.WareHouse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateCreate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NameOfResponsiblePerson")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WareHouseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WareHouses");
-                });
-
-            modelBuilder.Entity("ComputerShopDatabseImplement.Models.WareHouseComponent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ComponentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WareHouseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ComponentId");
-
-                    b.HasIndex("WareHouseId");
-
-                    b.ToTable("WareHouseComponents");
-                });
-
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.ComputerComponent", b =>
                 {
                     b.HasOne("ComputerShopDatabseImplement.Models.Component", "Component")
@@ -191,25 +143,6 @@ namespace ComputerShopDatabseImplement.Migrations
                     b.Navigation("Computer");
                 });
 
-            modelBuilder.Entity("ComputerShopDatabseImplement.Models.WareHouseComponent", b =>
-                {
-                    b.HasOne("ComputerShopDatabseImplement.Models.Component", "Component")
-                        .WithMany()
-                        .HasForeignKey("ComponentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ComputerShopDatabseImplement.Models.WareHouse", "wareHouse")
-                        .WithMany("WareHouseComponents")
-                        .HasForeignKey("WareHouseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Component");
-
-                    b.Navigation("wareHouse");
-                });
-
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Component", b =>
                 {
                     b.Navigation("ComputerComponents");
@@ -220,11 +153,6 @@ namespace ComputerShopDatabseImplement.Migrations
                     b.Navigation("ComputerComponents");
 
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("ComputerShopDatabseImplement.Models.WareHouse", b =>
-                {
-                    b.Navigation("WareHouseComponents");
                 });
 #pragma warning restore 612, 618
         }
