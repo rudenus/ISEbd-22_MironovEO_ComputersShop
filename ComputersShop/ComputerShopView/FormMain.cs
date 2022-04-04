@@ -133,30 +133,16 @@ namespace ComputersShopView
             LoadData();
         }
 
-        private void списокToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using var dialog = new SaveFileDialog { Filter = "docx|*.docx" };
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                _reportLogic.SaveComponentsToWordFile(new ReportBindingModel
-                {
-                    FileName = dialog.FileName
-                });
-                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-            }
+        
 
-        }
-
-        private void компонентыПоИзделиямToolStripMenuItem_Click(object sender, EventArgs e)
+        private void пополнениеСкладаToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            var form = Program.Container.Resolve<FormReportComputerComponents>();
+            var form = Program.Container.Resolve<FormReplenishmentWareHouse>();
             form.ShowDialog();
         }
-
-        private void списокЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Program.Container.Resolve<FormReportOrders>();
+            var form = Program.Container.Resolve<FormWareHouses>();
             form.ShowDialog();
         }
     }
