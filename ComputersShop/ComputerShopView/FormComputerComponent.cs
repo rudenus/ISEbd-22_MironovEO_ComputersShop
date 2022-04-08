@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ComputersShopView
 {
-    public partial class FormProductComponent : Form
+    public partial class FormComputerComponent : Form
     {
         public int Id
         {
@@ -28,7 +28,7 @@ namespace ComputersShopView
                 textBoxCount.Text = value.ToString();
             }
         }
-        public FormProductComponent(IComponentLogic logic)
+        public FormComputerComponent(IComponentLogic logic)
         {
             InitializeComponent();
             List<ComponentViewModel> list = logic.Read(null);

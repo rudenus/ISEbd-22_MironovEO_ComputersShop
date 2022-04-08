@@ -221,7 +221,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormComputer";
             this.Text = "Изделие";
-            this.Load += new System.EventHandler(this.FormProduct_Load);
+            this.Load += new System.EventHandler(this.FormComputer_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iComponentStorageBindingSource)).EndInit();

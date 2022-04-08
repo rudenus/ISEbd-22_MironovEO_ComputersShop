@@ -29,7 +29,7 @@ namespace ComputerShopFileImplement.Implements
                 return null;
             }
             return source.Orders
-            .Where(rec => rec.ComputerId.ToString().Contains(model.ComputerId.ToString()))
+            .Where(rec => rec.Id.Equals(model.Id) || rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
             .Select(CreateModel)
             .ToList();
         }

@@ -3,7 +3,10 @@ using ComputerShopContracts.BusinessLogicContracts;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopDatabseImplement;
 using ComputerShopDatabseImplement.Implements;
-
+using ComputersShopBuisnessLogic.BusinessLogics;
+using ComputersShopBuisnessLogic.OfficePackage;
+using ComputersShopBuisnessLogic.OfficePackage.Implements;
+using ComputersShopContracts.BusinessLogicContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,22 +52,30 @@ namespace ComputersShopView
             //FileDataListSingleton.SaveAll();//need to cut
         }
         private static IUnityContainer BuildUnityContainer()
-    {
-        var currentContainer = new UnityContainer();
-        currentContainer.RegisterType<IComponentStorage,
-        ComponentStorage>(new HierarchicalLifetimeManager());
-        currentContainer.RegisterType<IOrderStorage, OrderStorage>(new
-        HierarchicalLifetimeManager());
-        currentContainer.RegisterType<IComputerStorage, ComputerStorage>(new
-        HierarchicalLifetimeManager());
-        currentContainer.RegisterType<IComponentLogic, ComponentLogic>(new
-        HierarchicalLifetimeManager());
-        currentContainer.RegisterType<IOrderLogic, OrderLogic>(new
-        HierarchicalLifetimeManager());
-        currentContainer.RegisterType<IComputerLogic, ComputerLogic>(new
-        HierarchicalLifetimeManager());
-        return currentContainer;
+        {
+            var currentContainer = new UnityContainer();
+            currentContainer.RegisterType<IComponentStorage,
+            ComponentStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IOrderStorage, OrderStorage>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IComputerStorage, ComputerStorage>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IComponentLogic, ComponentLogic>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IOrderLogic, OrderLogic>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IComputerLogic, ComputerLogic>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportLogic, ReportLogic>(new
+           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ComputerSaveToExcel, SaveToExcel>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ComputerSaveToWord, SaveToWord>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ComputerSaveToPdf, SaveToPdf>(new
+            HierarchicalLifetimeManager());
+            return currentContainer;
+        }
     }
-}
 
 }
