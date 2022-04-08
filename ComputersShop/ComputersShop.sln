@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShopView", "ComputerShopView\ComputerShopView.csproj", "{AD3E4817-C3FC-4136-91DE-E7FAC0EABE0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShopView", "ComputerShopView\ComputerShopView.csproj", "{AD3E4817-C3FC-4136-91DE-E7FAC0EABE0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputersShopBuisnessLogic", "ComputersShopBuisnessLogic\ComputersShopBuisnessLogic.csproj", "{9E048078-C98E-4DF4-AF68-DF52B1EBC268}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopBuisnessLogic", "ComputersShopBuisnessLogic\ComputersShopBuisnessLogic.csproj", "{9E048078-C98E-4DF4-AF68-DF52B1EBC268}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputersShopContracts", "ComputersShopContracts\ComputersShopContracts.csproj", "{21C5D35C-5737-4A7F-B096-0EA63FC25191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopContracts", "ComputersShopContracts\ComputersShopContracts.csproj", "{21C5D35C-5737-4A7F-B096-0EA63FC25191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputersShopListImplement", "ComputersShopListImplement\ComputersShopListImplement.csproj", "{C99CC186-49FA-49EA-9C79-89F7D9A8A44E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopListImplement", "ComputersShopListImplement\ComputersShopListImplement.csproj", "{C99CC186-49FA-49EA-9C79-89F7D9A8A44E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputersShopFileImplement", "ComputersShopFileImplement\ComputersShopFileImplement.csproj", "{4E70DE84-5EBE-4CFB-AC4C-7A13913B2212}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopFileImplement", "ComputersShopFileImplement\ComputersShopFileImplement.csproj", "{4E70DE84-5EBE-4CFB-AC4C-7A13913B2212}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShopDatabseImplement", "ComputerShopDatabseImplement\ComputerShopDatabseImplement.csproj", "{2792F550-C605-49D0-A4F1-B340F2E80255}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4E70DE84-5EBE-4CFB-AC4C-7A13913B2212}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E70DE84-5EBE-4CFB-AC4C-7A13913B2212}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E70DE84-5EBE-4CFB-AC4C-7A13913B2212}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2792F550-C605-49D0-A4F1-B340F2E80255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2792F550-C605-49D0-A4F1-B340F2E80255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2792F550-C605-49D0-A4F1-B340F2E80255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2792F550-C605-49D0-A4F1-B340F2E80255}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
