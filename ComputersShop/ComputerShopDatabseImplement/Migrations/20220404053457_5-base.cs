@@ -2,7 +2,7 @@
 
 namespace ComputerShopDatabseImplement.Migrations
 {
-    public partial class initial5 : Migration
+    public partial class _5base : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

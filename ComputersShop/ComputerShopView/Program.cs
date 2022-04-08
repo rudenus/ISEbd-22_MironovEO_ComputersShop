@@ -7,6 +7,7 @@ using ComputersShopBuisnessLogic.BusinessLogics;
 using ComputersShopBuisnessLogic.OfficePackage;
 using ComputersShopBuisnessLogic.OfficePackage.Implements;
 using ComputersShopContracts.BusinessLogicContracts;
+using ComputersShopContracts.StoragesContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +74,10 @@ namespace ComputersShopView
             currentContainer.RegisterType<ComputerSaveToWord, SaveToWord>(new
             HierarchicalLifetimeManager());
             currentContainer.RegisterType<ComputerSaveToPdf, SaveToPdf>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IClientLogic, ClientLogic>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IClientStorage, ClientStorage>(new
             HierarchicalLifetimeManager());
             return currentContainer;
         }

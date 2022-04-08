@@ -24,6 +24,7 @@ namespace ComputerShopDatabseImplement.Implements
                     ComputerId = rec.ComputerId,
                     ComputerName = rec.Computer.ComputerName,
                     Count = rec.Count,
+                    ClientFIO = rec.Client.ClientFIO,
                     Sum = rec.Sum,
                     Status = rec.Status,
                     DateCreate = rec.DateCreate,
@@ -40,11 +41,16 @@ namespace ComputerShopDatabseImplement.Implements
             }
             using (ComputerShopDatabase context = new ComputerShopDatabase())
             {
-                return context.Orders.Include(rec => rec.Computer)
-                .Where(rec => rec.Id.Equals(model.Id) || rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+                return context.Orders.Include(rec => rec.Computer).Include(rec => rec.Client)
+                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date
+                >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
+                (model.ClientId.HasValue && rec.ClientId == model.ClientId))
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ClientId = rec.ClientId,
+                    ClientFIO = rec.Client.ClientFIO,
                     ComputerId = rec.ComputerId,
                     ComputerName = rec.Computer.ComputerName,
                     Count = rec.Count,
@@ -89,6 +95,7 @@ namespace ComputerShopDatabseImplement.Implements
                 {
                     ComputerId = model.ComputerId,
                     Count = model.Count,
+                    ClientId = (int)model.ClientId,
                     Sum = model.Sum,
                     Status = model.Status,
                     DateCreate = model.DateCreate,
