@@ -15,6 +15,11 @@ namespace ComputersShopContracts.BusinessLogicContracts
         void SaveComponentsToWordFile(ReportBindingModel model);
         void SaveComputerComponentToExcelFile(ReportBindingModel model);
         void SaveOrdersToPdfFile(ReportBindingModel model);
+        void SaveOrdersForAllDatesToPdfFile(ReportBindingModel model);
+        void SaveWareHouseComponentsToExcelFile(ReportBindingModel model);
+        void SaveWareHousesToWordFile(ReportBindingModel model);
+        List<ReportOrdersForAllDatesViewModel> GetOrdersForAllDates();
+        List<ReportWareHouseComponentViewModel> GetWareHouseComponents();
     }
 
 }

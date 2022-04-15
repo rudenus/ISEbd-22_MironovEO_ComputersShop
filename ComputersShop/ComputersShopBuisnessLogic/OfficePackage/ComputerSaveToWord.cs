@@ -44,6 +44,43 @@ namespace ComputersShopBuisnessLogic.OfficePackage
             }
             SaveWord(info);
         }
+        public void CreateDocWareHouse(WordInfoWareHouse info)
+        {
+            CreateWord(new WordInfo()
+            {
+                FileName = info.FileName
+            });
+            CreateParagraph(new WordParagraph
+            {
+                Texts = new List<(string, WordTextProperties)> { (info.Title, new
+                WordTextProperties { Bold = true, Size = "24", }) },
+                TextProperties = new WordTextProperties
+                {
+                    Size = "24",
+                    JustificationType = WordJustificationType.Center
+                }
+            });
+            CreateTable(new List<string>() { "Название", "ФИО ответственного", "Дата создания" });
+
+            foreach (var wareHouse in info.WareHouses)
+            {
+                CreateRow(new WordRowParametrs()
+                {
+                    Texts = new List<string>()
+                  {
+                      wareHouse.WareHouseName,
+                      wareHouse.ResponsiblePersonFIO,
+                      wareHouse.DateCreate.ToShortDateString()
+                  }
+                });
+            }
+            SaveWord(new WordInfo()
+            {
+                FileName = info.FileName
+            });
+        }
+        protected abstract void CreateTable(List<string> columns);
+        protected abstract void CreateRow(WordRowParametrs wordRow);
         protected abstract void CreateWord(WordInfo info);
         protected abstract void CreateParagraph(WordParagraph paragraph);
         protected abstract void SaveWord(WordInfo info);

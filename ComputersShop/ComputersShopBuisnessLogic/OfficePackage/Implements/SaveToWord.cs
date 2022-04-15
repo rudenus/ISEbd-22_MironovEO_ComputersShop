@@ -15,6 +15,7 @@ namespace ComputersShopBuisnessLogic.OfficePackage.Implements
     {
         private WordprocessingDocument _wordDocument;
         private Body _docBody;
+        private Table _table;
         /// <summary>
         /// Получение типа выравнивания
         /// </summary>
@@ -120,5 +121,72 @@ namespace ComputersShopBuisnessLogic.OfficePackage.Implements
             _wordDocument.MainDocumentPart.Document.Save();
             _wordDocument.Close();
         }
- }
+        protected override void CreateTable(List<string> columns)
+        {
+            _table = new Table();
+            TableProperties tblProp = new TableProperties(
+                new TableBorders(
+                    new TopBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.Single),
+                        Size = 14
+                    },
+                    new BottomBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.Single),
+                        Size = 14
+                    },
+                    new LeftBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.Single),
+                        Size = 14
+                    },
+                    new RightBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.Single),
+                        Size = 14
+                    },
+                    new InsideHorizontalBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.Single),
+                        Size = 10
+                    },
+                    new InsideVerticalBorder
+                    {
+                        Val = new EnumValue<BorderValues>(BorderValues.Single),
+                        Size = 12
+                    }
+                )
+            );
+            _table.AppendChild(tblProp);
+           
+            TableRow tableRowHeader = new TableRow();
+
+            
+            foreach(string columnName in columns)
+            {
+                TableCell cellHeaderName = new TableCell();
+                cellHeaderName.Append(new TableCellProperties(
+                    new TableCellWidth() { Type = TableWidthUnitValues.Dxa, Width = "2400" }));
+                cellHeaderName.Append(new Paragraph(new Run(new Text(columnName))));
+                tableRowHeader.Append(cellHeaderName);
+            }
+
+            _table.Append(tableRowHeader);
+            _docBody.AppendChild(_table);
+        }
+        protected override void CreateRow(WordRowParametrs wordRow)
+        {
+            TableRow tableRow = new TableRow();
+            foreach(var textRow in wordRow.Texts)
+            {
+                TableCell cellName = new TableCell();
+                cellName.Append(new TableCellProperties(
+                    new TableCellWidth() { Type = TableWidthUnitValues.Dxa, Width = "2400" }));
+                cellName.Append(new Paragraph(new Run(new Text(textRow))));
+                tableRow.Append(cellName);
+            }
+            _table.Append(tableRow);
+        }
+    }
 }

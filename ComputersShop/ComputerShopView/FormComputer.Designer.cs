@@ -53,8 +53,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(5, 21);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(5, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(126, 29);
             this.label1.TabIndex = 0;
@@ -63,8 +63,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label2.Location = new System.Drawing.Point(5, 74);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(5, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 29);
             this.label2.TabIndex = 1;
@@ -72,16 +72,18 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textBoxName.Location = new System.Drawing.Point(137, 21);
+            this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxName.Location = new System.Drawing.Point(137, 26);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(183, 34);
             this.textBoxName.TabIndex = 2;
             // 
             // textBoxPrice
             // 
-            this.textBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textBoxPrice.Location = new System.Drawing.Point(137, 74);
+            this.textBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxPrice.Location = new System.Drawing.Point(137, 92);
+            this.textBoxPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(100, 34);
             this.textBoxPrice.TabIndex = 3;
@@ -93,19 +95,22 @@
             this.groupBox1.Controls.Add(this.buttonUpd);
             this.groupBox1.Controls.Add(this.buttonAdd);
             this.groupBox1.Controls.Add(this.dataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(30, 114);
+            this.groupBox1.Location = new System.Drawing.Point(30, 142);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(867, 341);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(867, 426);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Комплектующие";
             // 
             // buttonRef
             // 
-            this.buttonRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonRef.Location = new System.Drawing.Point(694, 238);
+            this.buttonRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonRef.Location = new System.Drawing.Point(694, 298);
+            this.buttonRef.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonRef.Name = "buttonRef";
-            this.buttonRef.Size = new System.Drawing.Size(167, 33);
+            this.buttonRef.Size = new System.Drawing.Size(167, 41);
             this.buttonRef.TabIndex = 4;
             this.buttonRef.Text = "Обновить";
             this.buttonRef.UseVisualStyleBackColor = true;
@@ -113,10 +118,11 @@
             // 
             // buttonDel
             // 
-            this.buttonDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonDel.Location = new System.Drawing.Point(694, 183);
+            this.buttonDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonDel.Location = new System.Drawing.Point(694, 229);
+            this.buttonDel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(167, 33);
+            this.buttonDel.Size = new System.Drawing.Size(167, 41);
             this.buttonDel.TabIndex = 3;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
@@ -124,10 +130,11 @@
             // 
             // buttonUpd
             // 
-            this.buttonUpd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonUpd.Location = new System.Drawing.Point(694, 124);
+            this.buttonUpd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonUpd.Location = new System.Drawing.Point(694, 155);
+            this.buttonUpd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonUpd.Name = "buttonUpd";
-            this.buttonUpd.Size = new System.Drawing.Size(167, 33);
+            this.buttonUpd.Size = new System.Drawing.Size(167, 41);
             this.buttonUpd.TabIndex = 2;
             this.buttonUpd.Text = "Изменить";
             this.buttonUpd.UseVisualStyleBackColor = true;
@@ -135,10 +142,11 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonAdd.Location = new System.Drawing.Point(694, 64);
+            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonAdd.Location = new System.Drawing.Point(694, 80);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(167, 33);
+            this.buttonAdd.Size = new System.Drawing.Size(167, 41);
             this.buttonAdd.TabIndex = 1;
             this.buttonAdd.Text = "Добавить";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -152,11 +160,12 @@
             this.ColumnId,
             this.ColumnName,
             this.ColumnCount});
-            this.dataGridView.Location = new System.Drawing.Point(0, 21);
+            this.dataGridView.Location = new System.Drawing.Point(0, 26);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(649, 314);
+            this.dataGridView.Size = new System.Drawing.Size(649, 392);
             this.dataGridView.TabIndex = 0;
             // 
             // ColumnId
@@ -183,10 +192,11 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonCancel.Location = new System.Drawing.Point(696, 478);
+            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonCancel.Location = new System.Drawing.Point(696, 598);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(149, 33);
+            this.buttonCancel.Size = new System.Drawing.Size(149, 41);
             this.buttonCancel.TabIndex = 5;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -194,10 +204,11 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.buttonSave.Location = new System.Drawing.Point(508, 478);
+            this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonSave.Location = new System.Drawing.Point(508, 598);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(151, 33);
+            this.buttonSave.Size = new System.Drawing.Size(151, 41);
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -209,9 +220,9 @@
             // 
             // FormComputer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 542);
+            this.ClientSize = new System.Drawing.Size(909, 678);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.groupBox1);
@@ -219,9 +230,10 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormComputer";
             this.Text = "Компьютер";
-            this.Load += new System.EventHandler(this.FormProduct_Load);
+            this.Load += new System.EventHandler(this.FormComputer_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iComponentStorageBindingSource)).EndInit();

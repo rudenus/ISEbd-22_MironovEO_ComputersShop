@@ -42,15 +42,8 @@ namespace ComputersShopView
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.ApplicationExit += ApplicationExit;
-            AppDomain.CurrentDomain.UnhandledException += (o, e) => { if (e.IsTerminating) ApplicationExit(null, null); };
-            Application.ThreadException += (o, e) => { Application.Exit(); };
 
             Application.Run(Container.Resolve<FormMain>());
-        }
-        private static void ApplicationExit(object sender, EventArgs e)
-        {
-            //FileDataListSingleton.SaveAll();//need to cut
         }
         private static IUnityContainer BuildUnityContainer()
         {
@@ -75,6 +68,10 @@ namespace ComputersShopView
             HierarchicalLifetimeManager());
             currentContainer.RegisterType<ComputerSaveToPdf, SaveToPdf>(new
             HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IWareHouseLogic, WareHouseLogic>(new
+          HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IWareHouseStorage, WareHouseStorage>(new
+          HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

@@ -56,34 +56,34 @@ namespace ComputersShopBuisnessLogic.OfficePackage.Implements
             }
         }
         protected override void CreateRow(PdfRowParameters rowParameters)
- {
- var row = _table.AddRow();
- for (int i = 0; i<rowParameters.Texts.Count; ++i)
- {
- row.Cells[i].AddParagraph(rowParameters.Texts[i]);
- if (!string.IsNullOrEmpty(rowParameters.Style))
- {
- row.Cells[i].Style = rowParameters.Style;
- }
-    Unit borderWidth = 0.5;
-    row.Cells[i].Borders.Left.Width = borderWidth;
- row.Cells[i].Borders.Right.Width = borderWidth;
- row.Cells[i].Borders.Top.Width = borderWidth;
- row.Cells[i].Borders.Bottom.Width = borderWidth;
- row.Cells[i].Format.Alignment =
-GetParagraphAlignment(rowParameters.ParagraphAlignment);
-    row.Cells[i].VerticalAlignment = VerticalAlignment.Center;
- }
- }
- protected override void SavePdf(PdfInfo info)
-{
-    var renderer = new PdfDocumentRenderer(true)
-    {
-        Document = _document
-    };
-    renderer.RenderDocument();
-    renderer.PdfDocument.Save(info.FileName);
-}
- }
+        {
+            var row = _table.AddRow();
+            for (int i = 0; i < rowParameters.Texts.Count; ++i)
+            {
+                row.Cells[i].AddParagraph(rowParameters.Texts[i]);
+                if (!string.IsNullOrEmpty(rowParameters.Style))
+                {
+                    row.Cells[i].Style = rowParameters.Style;
+                }
+                Unit borderWidth = 0.5;
+                row.Cells[i].Borders.Left.Width = borderWidth;
+                row.Cells[i].Borders.Right.Width = borderWidth;
+                row.Cells[i].Borders.Top.Width = borderWidth;
+                row.Cells[i].Borders.Bottom.Width = borderWidth;
+                row.Cells[i].Format.Alignment =
+               GetParagraphAlignment(rowParameters.ParagraphAlignment);
+                row.Cells[i].VerticalAlignment = VerticalAlignment.Center;
+            }
+        }
+        protected override void SavePdf(PdfInfo info)
+        {
+            var renderer = new PdfDocumentRenderer(true)
+            {
+                Document = _document
+            };
+            renderer.RenderDocument();
+            renderer.PdfDocument.Save(info.FileName);
+        }
+    }
 
 }
