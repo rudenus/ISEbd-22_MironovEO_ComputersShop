@@ -19,13 +19,13 @@ namespace ComputersShopView
         public int Id { set { id = value; } }
         private readonly IComputerLogic _logic;
         private int? id;
-        private Dictionary<int, (string, int)> productComponents;
+        private Dictionary<int, (string, int)> ComputerComponents;
         public FormComputer(IComputerLogic logic)
         {
             InitializeComponent();
             _logic = logic;
         }
-        private void FormProduct_Load(object sender, EventArgs e)
+        private void FormComputer_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
@@ -40,7 +40,7 @@ namespace ComputersShopView
                     {
                         textBoxName.Text = view.ComputerName;
                         textBoxPrice.Text = view.Price.ToString();
-                        productComponents = view.ComputerComponents;
+                        ComputerComponents = view.ComputerComponents;
                         LoadData();
                     }
                 }
@@ -52,17 +52,17 @@ namespace ComputersShopView
             }
             else
             {
-                productComponents = new Dictionary<int, (string, int)>();
+                ComputerComponents = new Dictionary<int, (string, int)>();
             }
         }
         private void LoadData()
         {
             try
             {
-                if (productComponents != null)
+                if (ComputerComponents != null)
                 {
                     dataGridView.Rows.Clear();
-                    foreach (var pc in productComponents)
+                    foreach (var pc in ComputerComponents)
                     {
                         dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1,pc.Value.Item2 });
                     }
@@ -76,16 +76,16 @@ namespace ComputersShopView
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var form = Program.Container.Resolve<FormProductComponent>();
+            var form = Program.Container.Resolve<FormComputerComponent>();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (productComponents.ContainsKey(form.Id))
+                if (ComputerComponents.ContainsKey(form.Id))
                 {
-                    productComponents[form.Id] = (form.ComponentName, form.Count);
+                    ComputerComponents[form.Id] = (form.ComponentName, form.Count);
                 }
                 else
                 {
-                    productComponents.Add(form.Id, (form.ComponentName, form.Count));
+                    ComputerComponents.Add(form.Id, (form.ComponentName, form.Count));
                 }
                 LoadData();
             }
@@ -94,13 +94,13 @@ namespace ComputersShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Program.Container.Resolve<FormProductComponent>();
+                var form = Program.Container.Resolve<FormComputerComponent>();
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 form.Id = id;
-                form.Count = productComponents[id].Item2;
+                form.Count = ComputerComponents[id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    productComponents[form.Id] = (form.ComponentName, form.Count);
+                    ComputerComponents[form.Id] = (form.ComponentName, form.Count);
                     LoadData();
                 }
             }
@@ -115,7 +115,7 @@ namespace ComputersShopView
                     try
                     {
 
-                        productComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
+                        ComputerComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
                     }
                     catch (Exception ex)
                     {
@@ -145,7 +145,7 @@ namespace ComputersShopView
                MessageBoxIcon.Error);
                 return;
             }
-            if (productComponents == null || productComponents.Count == 0)
+            if (ComputerComponents == null || ComputerComponents.Count == 0)
             {
                 MessageBox.Show("Заполните комплектующие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -158,7 +158,7 @@ namespace ComputersShopView
                     Id = id,
                     ComputerName = textBoxName.Text,
                     Price = Convert.ToDecimal(textBoxPrice.Text),
-                    ComputerComponents = productComponents
+                    ComputerComponents = ComputerComponents
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);

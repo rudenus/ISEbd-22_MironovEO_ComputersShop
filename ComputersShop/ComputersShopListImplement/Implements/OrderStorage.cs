@@ -36,7 +36,7 @@ namespace ComputerShopListImplement.Implements
             var result = new List<OrderViewModel>();
             foreach (var order in source.Orders)
             {
-                if (order.ComputerId.ToString().Contains(model.ComputerId.ToString()))
+                if (order.ComputerId.ToString().Contains(model.ComputerId.ToString()) || order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
                 {
                     result.Add(CreateModel(order));
                 }
