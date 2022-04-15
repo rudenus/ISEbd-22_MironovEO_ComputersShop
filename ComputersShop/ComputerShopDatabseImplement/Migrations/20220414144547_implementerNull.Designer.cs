@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComputerShopDatabseImplement.Migrations
 {
     [DbContext(typeof(ComputerShopDatabase))]
-    [Migration("20220330171933_clientTable")]
-    partial class clientTable
+    [Migration("20220414144547_implementerNull")]
+    partial class implementerNull
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,6 +105,28 @@ namespace ComputerShopDatabseImplement.Migrations
                     b.ToTable("ComputerComponents");
                 });
 
+            modelBuilder.Entity("ComputerShopDatabseImplement.Models.Implementer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImplementerFIO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PauseTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkingTime")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Implementers");
+                });
+
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -127,6 +149,9 @@ namespace ComputerShopDatabseImplement.Migrations
                     b.Property<DateTime?>("DateImplement")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ImplementerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -138,6 +163,8 @@ namespace ComputerShopDatabseImplement.Migrations
                     b.HasIndex("ClientId");
 
                     b.HasIndex("ComputerId");
+
+                    b.HasIndex("ImplementerId");
 
                     b.ToTable("Orders");
                 });
@@ -175,9 +202,15 @@ namespace ComputerShopDatabseImplement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ComputerShopDatabseImplement.Models.Implementer", "Implementer")
+                        .WithMany("Orders")
+                        .HasForeignKey("ImplementerId");
+
                     b.Navigation("Client");
 
                     b.Navigation("Computer");
+
+                    b.Navigation("Implementer");
                 });
 
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Client", b =>
@@ -194,6 +227,11 @@ namespace ComputerShopDatabseImplement.Migrations
                 {
                     b.Navigation("ComputerComponents");
 
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("ComputerShopDatabseImplement.Models.Implementer", b =>
+                {
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
