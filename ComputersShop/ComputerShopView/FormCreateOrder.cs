@@ -1,6 +1,8 @@
 ﻿using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.BusinessLogicContracts;
 using ComputerShopContracts.ViewModels;
+using ComputersShopBuisnessLogic.BusinessLogics;
+using ComputersShopContracts.BusinessLogicContracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,25 +17,35 @@ namespace ComputersShopView
 {
     public partial class FormCreateOrder : Form
     {
-        private readonly IComputerLogic _logicC;
-        private readonly IOrderLogic _logicO;
-        public FormCreateOrder(IComputerLogic logicC, IOrderLogic logicO)
+        private readonly IComputerLogic _logicCompucter;
+        private readonly IOrderLogic _logicOrder;
+        private readonly IClientLogic _logicClient;
+        public FormCreateOrder(IComputerLogic logicCompucter, IOrderLogic logicOrder, IClientLogic logicClient)
         {
             InitializeComponent();
-            _logicC = logicC;
-            _logicO = logicO;
+            _logicCompucter = logicCompucter;
+            _logicOrder = logicOrder;
+            _logicClient = logicClient;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                var list = _logicC.Read(null);
+                var list = _logicCompucter.Read(null);
                 foreach (var component in list)
                 {
                     comboBoxComputer.DisplayMember = "ComputerName";
                     comboBoxComputer.ValueMember = "Id";
                     comboBoxComputer.DataSource = list;
                     comboBoxComputer.SelectedItem = null;
+                }
+                var listClients = _logicClient.Read(null);
+                foreach (var client in listClients)
+                {
+                    comboBoxClient.DataSource = listClients;
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -49,11 +61,9 @@ namespace ComputersShopView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxComputer.SelectedValue);
-                    ComputerViewModel computer = _logicC.Read(new ComputerBindingModel
-                    {
-                        Id
-                    = id
-                    })?[0];
+                    ComputerViewModel computer = _logicCompucter.Read(new ComputerBindingModel
+                    {Id = id}
+                    )?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * computer?.Price ?? 0).ToString();
                 }
@@ -88,8 +98,9 @@ namespace ComputersShopView
             }
             try
             {
-                _logicO.CreateOrder(new CreateOrderBindingModel
+                _logicOrder.CreateOrder(new CreateOrderBindingModel
                 {
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     ComputerId = Convert.ToInt32(comboBoxComputer.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)

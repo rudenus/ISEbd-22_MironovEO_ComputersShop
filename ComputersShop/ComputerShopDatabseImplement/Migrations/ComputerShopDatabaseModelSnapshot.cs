@@ -19,6 +19,30 @@ namespace ComputerShopDatabseImplement.Migrations
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ComputerShopDatabseImplement.Models.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClientFIO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Component", b =>
                 {
                     b.Property<int>("Id")
@@ -86,6 +110,9 @@ namespace ComputerShopDatabseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ComputerId")
                         .HasColumnType("int");
 
@@ -106,57 +133,11 @@ namespace ComputerShopDatabseImplement.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.HasIndex("ComputerId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("ComputerShopDatabseImplement.Models.WareHouse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateCreate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NameOfResponsiblePerson")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WareHouseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WareHouses");
-                });
-
-            modelBuilder.Entity("ComputerShopDatabseImplement.Models.WareHouseComponent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ComponentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WareHouseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ComponentId");
-
-                    b.HasIndex("WareHouseId");
-
-                    b.ToTable("WareHouseComponents");
                 });
 
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.ComputerComponent", b =>
@@ -180,32 +161,24 @@ namespace ComputerShopDatabseImplement.Migrations
 
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Order", b =>
                 {
+                    b.HasOne("ComputerShopDatabseImplement.Models.Client", "Client")
+                        .WithMany("Orders")
+                        .HasForeignKey("ClientId");
+
                     b.HasOne("ComputerShopDatabseImplement.Models.Computer", "Computer")
                         .WithMany("Orders")
                         .HasForeignKey("ComputerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Client");
+
                     b.Navigation("Computer");
                 });
 
-            modelBuilder.Entity("ComputerShopDatabseImplement.Models.WareHouseComponent", b =>
+            modelBuilder.Entity("ComputerShopDatabseImplement.Models.Client", b =>
                 {
-                    b.HasOne("ComputerShopDatabseImplement.Models.Component", "Component")
-                        .WithMany()
-                        .HasForeignKey("ComponentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ComputerShopDatabseImplement.Models.WareHouse", "wareHouse")
-                        .WithMany("WareHouseComponents")
-                        .HasForeignKey("WareHouseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Component");
-
-                    b.Navigation("wareHouse");
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Component", b =>
@@ -218,11 +191,6 @@ namespace ComputerShopDatabseImplement.Migrations
                     b.Navigation("ComputerComponents");
 
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("ComputerShopDatabseImplement.Models.WareHouse", b =>
-                {
-                    b.Navigation("WareHouseComponents");
                 });
 #pragma warning restore 612, 618
         }

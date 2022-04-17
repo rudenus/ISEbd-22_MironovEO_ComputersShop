@@ -15,9 +15,11 @@ namespace ComputerShopFileImplement
         private readonly string OrderFileName = "Order.xml";
         private readonly string ComputerFileName = "Computer.xml";
         private readonly string WareHouseFileName = "WareHouse.xml";
+        private readonly string ClientFileName = "Client.xml";
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Computer> Computers { get; set; }
+        public List<Client> Clients { get; set; }
         public List<WareHouse> WareHouses { get; set; }
         private FileDataListSingleton()
         {
@@ -25,6 +27,7 @@ namespace ComputerShopFileImplement
             Orders = LoadOrders();
             Computers = LoadComputers();
             WareHouses = LoadWareHouses();
+            Clients = LoadClients();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -40,12 +43,34 @@ namespace ComputerShopFileImplement
             GetInstance().SaveComputers();
             GetInstance().SaveOrders();
             GetInstance().SaveWareHouses();
+            GetInstance().SaveClients();
         }
         ~FileDataListSingleton()
         {
             SaveComponents();
             SaveOrders();//dont work
             SaveComputers();
+            SaveClients();
+        }
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Client").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ClientFIO = elem.Element("ClientFIO").Value,
+                        Email = elem.Element("Email").Value,
+                        Password = elem.Element("Password").Value,
+                    });
+                }
+            }
+            return list;
         }
         private List<Component> LoadComponents()
         {
@@ -79,6 +104,7 @@ namespace ComputerShopFileImplement
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         ComputerId = Convert.ToInt32(elem.Element("ComputerId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
+                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
                         DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
@@ -172,11 +198,29 @@ namespace ComputerShopFileImplement
                     new XElement("Sum", order.Sum),
                     new XElement("Status", order.Status),
                     new XElement("DateCreate", order.DateCreate),
+                    new XElement("ClientId", order.ClientId),
                     new XElement("DateImplement", order.DateImplement)));
                 }
 
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(OrderFileName);
+            }
+        }
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                    new XAttribute("Id", client.Id),
+                    new XElement("ClientFIO", client.ClientFIO),
+                    new XElement("Email", client.Email),
+                    new XElement("Password", client.Password)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
             }
         }
         private void SaveComputers()

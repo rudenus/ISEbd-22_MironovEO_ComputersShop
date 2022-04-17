@@ -12,17 +12,13 @@ namespace ComputerShopContracts.ViewModels
     {
         public int Id { get; set; }
         public int ComputerId { get; set; }
-        [DisplayName("Изделие")]
+        public int ClientId { get; set; }
         public string ComputerName { get; set; }
-        [DisplayName("Количество")]
         public int Count { get; set; }
-        [DisplayName("Сумма")]
+        public string ClientFIO { get; set; }
         public decimal Sum { get; set; }
-        [DisplayName("Статус")]
         public OrderStatus Status { get; set; }
-        [DisplayName("Дата создания")]
         public DateTime DateCreate { get; set; }
-        [DisplayName("Дата выполнения")]
         public DateTime? DateImplement { get; set; }
     }
 }

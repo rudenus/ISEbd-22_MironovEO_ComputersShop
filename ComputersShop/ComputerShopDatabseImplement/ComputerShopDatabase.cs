@@ -26,5 +26,6 @@ namespace ComputerShopDatabseImplement
         public virtual DbSet<Order> Orders { set; get; }
         public virtual DbSet<WareHouse> WareHouses { get; set; }
         public virtual DbSet<WareHouseComponent> WareHouseComponents { get; set; }
+        public virtual DbSet<Client> Clients { set; get; }
     }
 }
