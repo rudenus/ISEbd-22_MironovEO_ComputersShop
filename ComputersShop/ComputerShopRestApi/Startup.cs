@@ -1,4 +1,5 @@
 using ComputerShopBusinessLogic.BusinessLogics;
+using ComputerShopBusinessLogic.Interfaces;
 using ComputerShopContracts.BusinessLogicContracts;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopDatabseImplement.Implements;
@@ -39,11 +40,14 @@ namespace ComputerShopRestApi
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IClientLogic, ClientLogic>();
             services.AddTransient<IComputerLogic, ComputerLogic>();
+            services.AddTransient<IWareHouseLogic, WareHouseLogic>();
+            services.AddTransient<IWareHouseStorage, WareHouseStorage>();
+            services.AddTransient<IComponentLogic, ComponentLogic>();
+            services.AddTransient<IComponentStorage, ComponentStorage>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ComputerShopRestApi", Version = "v1" });
-                //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             });
         }
 
