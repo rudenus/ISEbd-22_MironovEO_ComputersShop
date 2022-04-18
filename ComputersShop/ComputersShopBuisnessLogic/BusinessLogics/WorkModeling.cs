@@ -82,7 +82,8 @@ namespace ComputersShopBuisnessLogic.BusinessLogics
                         rnd.Next(1, 5) * order.Count);
                         _orderLogic.FinishOrder(new
                         ChangeStatusBindingModel
-                        { OrderId = order.Id });
+                        { OrderId = order.Id,
+                        ImplementerId = implementer.Id});
                         // отдыхаем
                         Thread.Sleep(implementer.PauseTime);
                     }

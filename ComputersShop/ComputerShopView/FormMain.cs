@@ -45,7 +45,7 @@ namespace ComputersShopView
                     dataGridView.Rows.Clear();
                     foreach (var order in list)
                     {
-                        dataGridView.Rows.Add(new object[] { order.Id, order.ComputerId, order.ComputerName,order.ClientFIO, order.Count, order.Sum,
+                        dataGridView.Rows.Add(new object[] { order.Id, order.ComputerId, order.ComputerName,order.Count, order.ClientFIO, order.ImplementerFIO, order.Sum,
                             order.Status,order.DateCreate, order.DateImplement});
                     }
                 }

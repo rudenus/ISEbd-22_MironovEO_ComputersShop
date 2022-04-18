@@ -18,6 +18,7 @@ namespace ComputerShopDatabseImplement.Implements
             using (ComputerShopDatabase context = new ComputerShopDatabase())
             {
                 return context.Orders.Include(rec => rec.Computer)
+                .Include(rec=>rec.Implementer)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
@@ -25,6 +26,7 @@ namespace ComputerShopDatabseImplement.Implements
                     ComputerName = rec.Computer.ComputerName,
                     Count = rec.Count,
                     ClientFIO = rec.Client.ClientFIO,
+                    ImplementerFIO = rec.Implementer.ImplementerFIO,
                     Sum = rec.Sum,
                     Status = rec.Status,
                     DateCreate = rec.DateCreate,
@@ -169,13 +171,27 @@ namespace ComputerShopDatabseImplement.Implements
             using (ComputerShopDatabase context = new ComputerShopDatabase())
             {
                 Computer element = context.Computers.FirstOrDefault(rec => rec.Id == model.ComputerId);
-                if (element != null)
+                Implementer impl = context.Implementers.FirstOrDefault(rec => rec.Id == model.ImplementerId);
+                if(impl != null)
+                {
+                    if (impl.Orders == null)
+                    {
+                        impl.Orders = new List<Order>();
+                        context.Implementers.Update(impl);
+                        context.SaveChanges();
+                    }
+                    impl.Orders.Add(order);
+                }
+                if (element != null )
                 {
                     if (element.Orders == null)
                     {
                         element.Orders = new List<Order>();
                     }
+                  
+                    
                     element.Orders.Add(order);
+                    
                     context.Computers.Update(element);
                     context.SaveChanges();
                 }

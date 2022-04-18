@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComputerShopDatabseImplement.Migrations
 {
     [DbContext(typeof(ComputerShopDatabase))]
-    [Migration("20220414144547_implementerNull")]
-    partial class implementerNull
+    [Migration("20220418044917_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
