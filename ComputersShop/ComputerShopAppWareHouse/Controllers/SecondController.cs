@@ -1,8 +1,8 @@
 ﻿using ComputerShopAppWareHouse.Models;
 using ComputerShopBusinessLogic.BindingModels;
 using ComputerShopBusinessLogic.ViewModels;
-using ComputerShopClientApp;
 using ComputerShopContracts.ViewModels;
+using ComputersShopContracts.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -27,12 +27,12 @@ namespace ComputerShopAppWareHouse.Controllers
         {
             if (!Program.Authorization)
             {
-                return Redirect("~/Home/Privacy");
+                return Redirect("~/Second/Privacy");
             }
 
-            return View(APIClient.GetRequest<List<WareHouseViewModel>>($"api/warehouse/getall"));
+            return View(APIClient.GetRequest<List<WareHouseRequestViewModel>>($"api/warehouse/getall"));
         }
-
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();
@@ -61,13 +61,13 @@ namespace ComputerShopAppWareHouse.Controllers
         {
             if (!Program.Authorization)
             {
-                return Redirect("~/Home/Privacy");
+                return Redirect("~/Second/Privacy");
             }
             return View();
         }
 
         [HttpPost]
-        public void Create([Bind("WareHouseName, NameOfResponsiblePerson")] WareHouseBindingModel model)
+        public void Create([Bind("WareHouseName, ResponsiblePersonFCS")] WareHouseBindingModel model)
         {
             if (string.IsNullOrEmpty(model.WareHouseName) || string.IsNullOrEmpty(model.ResponsiblePersonFCS))
             {
@@ -85,7 +85,7 @@ namespace ComputerShopAppWareHouse.Controllers
                 return NotFound();
             }
 
-            var warehouse = APIClient.GetRequest<List<WareHouseViewModel>>(
+            var warehouse = APIClient.GetRequest<List<WareHouseRequestViewModel>>(
                 $"api/warehouse/getall").FirstOrDefault(rec => rec.Id == id);
             if (warehouse == null)
             {
@@ -96,20 +96,24 @@ namespace ComputerShopAppWareHouse.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(int id, [Bind("Id,WareHouseName,NameOfResponsiblePerson")] WareHouseBindingModel model)
+        public IActionResult Update(int id, [Bind("Id,WareHouseName,ResponsiblePersonFIO")] WareHouseRequestViewModel model)
         {
             if (id != model.Id)
             {
                 return NotFound();
             }
 
-            var warehouse = APIClient.GetRequest<List<WareHouseViewModel>>(
+            var warehouse = APIClient.GetRequest<List<WareHouseRequestViewModel>>(
                 $"api/warehouse/getall").FirstOrDefault(rec => rec.Id == id);
-
+            //var listTuple = new Dictionary<int, (string,int)>();
+            //foreach (var tuple in warehouse.WareHouseComponents)
+            //{
+            //    listTuple.Add(tuple.Key,(tuple.Value.Item1, tuple.Value.Item2) );
+            //}
             model.WareHouseComponents = warehouse.WareHouseComponents;
 
             APIClient.PostRequest("api/warehouse/update", model);
-            return Redirect("~/Home/Index");
+            return Redirect("~/Second/Index");
         }
 
         public IActionResult Delete(int? id)
@@ -119,7 +123,7 @@ namespace ComputerShopAppWareHouse.Controllers
                 return NotFound();
             }
 
-            var warehouse = APIClient.GetRequest<List<WareHouseViewModel>>(
+            var warehouse = APIClient.GetRequest<List<WareHouseRequestViewModel>>(
                 $"api/warehouse/getall").FirstOrDefault(rec => rec.Id == id);
             if (warehouse == null)
             {
@@ -133,16 +137,16 @@ namespace ComputerShopAppWareHouse.Controllers
         public IActionResult Delete(int id)
         {
             APIClient.PostRequest("api/warehouse/delete", new WareHouseBindingModel { Id = id });
-            return Redirect("~/Home/Index");
+            return Redirect("~/Second/Index");
         }
 
         public IActionResult AddComponent()
         {
             if (!Program.Authorization)
             {
-                return Redirect("~/Home/Privacy");
+                return Redirect("~/Second/Privacy");
             }
-            ViewBag.Warehouses = APIClient.GetRequest<List<WareHouseViewModel>>("api/warehouse/getall");
+            ViewBag.Warehouses = APIClient.GetRequest<List<WareHouseRequestViewModel>>("api/warehouse/getall");
             ViewBag.Components = APIClient.GetRequest<List<ComponentViewModel>>($"api/warehouse/getallcomponents");
 
             return View();
@@ -156,7 +160,7 @@ namespace ComputerShopAppWareHouse.Controllers
                 return NotFound();
             }
 
-            var warehouse = APIClient.GetRequest<List<WareHouseViewModel>>(
+            var warehouse = APIClient.GetRequest<List<WareHouseRequestViewModel>>(
                 "api/warehouse/getall").FirstOrDefault(rec => rec.Id == model.WareHouseId);
 
             if (warehouse == null)
@@ -164,7 +168,7 @@ namespace ComputerShopAppWareHouse.Controllers
                 return NotFound();
             }
 
-            var component = APIClient.GetRequest<List<WareHouseViewModel>>(
+            var component = APIClient.GetRequest<List<WareHouseRequestViewModel>>(
                 "api/warehouse/getallcomponents").FirstOrDefault(rec => rec.Id == model.ComponentId);
 
             if (component == null)
@@ -173,7 +177,7 @@ namespace ComputerShopAppWareHouse.Controllers
             }
 
             APIClient.PostRequest("api/warehouse/addcomponent", model);
-            return Redirect("~/Home/Index");
+            return Redirect("~/Second/Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

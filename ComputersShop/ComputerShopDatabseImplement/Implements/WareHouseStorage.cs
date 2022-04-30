@@ -2,6 +2,7 @@
 using ComputerShopBusinessLogic.Interfaces;
 using ComputerShopBusinessLogic.ViewModels;
 using ComputerShopDatabseImplement.Models;
+using ComputersShopContracts.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -63,11 +64,12 @@ namespace ComputerShopDatabseImplement.Implements
         {
             using (ComputerShopDatabase context = new ComputerShopDatabase())
             {
-                return context.WareHouses
+                var list = context.WareHouses
                     .Include(rec => rec.WareHouseComponents)
                     .ThenInclude(rec => rec.Component)
-                    .ToList()
-                    .Select(rec => new WareHouseViewModel
+                    .ToList();
+
+                var list2 =  list.Select(rec => new WareHouseViewModel
                     {
                         Id = rec.Id,
                         WareHouseName = rec.WareHouseName,
@@ -79,9 +81,9 @@ namespace ComputerShopDatabseImplement.Implements
                             recWareHouseComponents.Count))
                     })
                     .ToList();
+                return list2;
             }
         }
-
         public List<WareHouseViewModel> GetFilteredList(WareHouseBindingModel model)
         {
             if (model == null)

@@ -16,6 +16,7 @@ namespace ComputerShopAppWareHouse
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            APIClient.Connect(configuration);
         }
 
         public IConfiguration Configuration { get; }
@@ -50,7 +51,7 @@ namespace ComputerShopAppWareHouse
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Second}/{action=Index}/{id?}");
             });
         }
     }

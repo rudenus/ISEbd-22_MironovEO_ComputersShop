@@ -266,7 +266,7 @@ namespace ComputerShopDatabseImplement.Migrations
                 {
                     b.Navigation("WareHouseComponents");
                 });
-#pragma warning restore 612, 618
+#pragma warning reware 612, 618
         }
     }
 }

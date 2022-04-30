@@ -2420,12 +2420,12 @@
     // compute reference element offsets
     data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
 
-    // compute auto placement, store placement inside the data object,
+    // compute auto placement, ware placement inside the data object,
     // modifiers will be able to edit `placement` if needed
     // and refer to originalPlacement to know the original value
     data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
 
-    // store the computed placement inside `originalPlacement`
+    // ware the computed placement inside `originalPlacement`
     data.originalPlacement = data.placement;
 
     data.positionFixed = this.options.positionFixed;
@@ -2694,7 +2694,7 @@
     // compute reference element offsets
     var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
 
-    // compute auto placement, store placement inside the data object,
+    // compute auto placement, ware placement inside the data object,
     // modifiers will be able to edit `placement` if needed
     // and refer to originalPlacement to know the original value
     var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
@@ -3369,7 +3369,7 @@
     var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
 
     // NOTE: DOM access here
-    // restores the original style properties after the offsets have been computed
+    // rewares the original style properties after the offsets have been computed
     popperStyles.top = top;
     popperStyles.left = left;
     popperStyles[transformProp] = transform;
@@ -5066,13 +5066,13 @@
     };
 
     _proto._resetScrollbar = function _resetScrollbar() {
-      // Restore fixed content padding
+      // Reware fixed content padding
       var fixedContent = [].slice.call(document.querySelectorAll(Selector$5.FIXED_CONTENT));
       $(fixedContent).each(function (index, element) {
         var padding = $(element).data('padding-right');
         $(element).removeData('padding-right');
         element.style.paddingRight = padding ? padding : '';
-      }); // Restore sticky content
+      }); // Reware sticky content
 
       var elements = [].slice.call(document.querySelectorAll("" + Selector$5.STICKY_CONTENT));
       $(elements).each(function (index, element) {
@@ -5081,7 +5081,7 @@
         if (typeof margin !== 'undefined') {
           $(element).css('margin-right', margin).removeData('margin-right');
         }
-      }); // Restore body padding
+      }); // Reware body padding
 
       var padding = $(document.body).data('padding-right');
       $(document.body).removeData('padding-right');
@@ -5161,7 +5161,7 @@
 
     var $target = $(target).one(Event$5.SHOW, function (showEvent) {
       if (showEvent.isDefaultPrevented()) {
-        // Only register focus restorer if modal will actually get shown
+        // Only register focus rewarer if modal will actually get shown
         return;
       }
 
