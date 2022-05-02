@@ -1,8 +1,10 @@
 ﻿using ComputersShopContracts.BindingModels;
 using ComputersShopContracts.BusinessLogicContracts;
 using ComputersShopContracts.StoragesContracts;
+using ComputersShopContracts.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ComputerShopRestApi.Controllers
 {
@@ -11,8 +13,10 @@ namespace ComputerShopRestApi.Controllers
     public class ClientController : ControllerBase
     {
         private readonly IClientLogic _logic;
-        public ClientController(IClientLogic logic)
+        private readonly IMessageInfoLogic _messageLogic;
+        public ClientController(IClientLogic logic, IMessageInfoLogic messageInfoLogic)
         {
+            _messageLogic = messageInfoLogic;
             _logic = logic;
         }
         [HttpGet]
@@ -25,6 +29,8 @@ namespace ComputerShopRestApi.Controllers
             });
             return (list != null && list.Count > 0) ? list[0] : null;
         }
+        [HttpGet]
+        public List<MessageInfoViewModel> GetMessages(int clientId) => _messageLogic.Read(new MessageInfoBindingModel { ClientId = clientId });
         [HttpPost]
         public void Register(ClientBindingModel model) =>
         _logic.CreateOrUpdate(model);

@@ -27,6 +27,7 @@
     <ProjectReference Include="..\ComputersShopListImplement\ComputersShopListImplement.csproj" />
   </ItemGroup>
 
+
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>

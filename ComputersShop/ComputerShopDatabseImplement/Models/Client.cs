@@ -23,5 +23,6 @@ namespace ComputerShopDatabseImplement.Models
 
         [ForeignKey("ClientId")]
         public List<Order> Orders { get; set; }
+        public List<MessageInfo> Messages { get; set; }
     }
 }

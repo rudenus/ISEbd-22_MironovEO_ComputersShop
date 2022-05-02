@@ -3,6 +3,7 @@ using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.ViewModels;
 using ComputersShopContracts.BindingModels;
 using ComputersShopContracts.StoragesContracts;
+using ComputersShopContracts.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -96,6 +97,14 @@ namespace ComputerShopClientApp.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+        public IActionResult Mail()
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            return View(APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}"));
         }
         [HttpPost]
         public void Register(string login, string password, string fio)
