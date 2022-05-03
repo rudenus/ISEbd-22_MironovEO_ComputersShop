@@ -13,6 +13,7 @@ namespace ComputersShopContracts.StoragesContracts
         List<MessageInfoViewModel> GetFullList();
         List<MessageInfoViewModel> GetFilteredList(MessageInfoBindingModel model);
         void Insert(MessageInfoBindingModel model);
+        MessageInfoViewModel GetElement(MessageInfoBindingModel model);
     }
 
 }

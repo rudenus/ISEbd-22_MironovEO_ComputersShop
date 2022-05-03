@@ -59,6 +59,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
                 Text = $"Заказ от {DateTime.Now} на сумму {model.Sum:N2} принят."
             });
         }
+     
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
             var order = _orderStorage.GetElement(new OrderBindingModel

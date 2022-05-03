@@ -16,8 +16,8 @@ namespace ComputersShopBuisnessLogic.MailWorker
     public class MailKitWorker : AbstractMailWorker
     {
         public IClientStorage clientStorage;
-        public MailKitWorker(IMessageInfoLogic messageInfoLogic, IClientStorage client) :
-        base(messageInfoLogic)
+        public MailKitWorker(IMessageInfoLogic messageInfoLogic, IClientStorage client, IMessageInfoStorage messageInfoStorage) :
+        base(messageInfoLogic, client, messageInfoStorage)
         {
             clientStorage = client;
         }

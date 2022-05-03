@@ -26,6 +26,28 @@ namespace ComputerShopDatabseImplement.Implements
             })
             .ToList();
         }
+        public MessageInfoViewModel GetElement(MessageInfoBindingModel model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+            using (var context = new ComputerShopDatabase())
+            {
+                var message = context.MessageInfoes
+                .FirstOrDefault(rec => rec.MessageId == model.MessageId);
+                return message != null ?
+                new MessageInfoViewModel
+                {
+                    MessageId = message.MessageId,
+                    Subject = message.Subject,
+                    Body = message.Body,
+                    DateDelivery = message.DateDelivery,
+                    SenderName = message.SenderName
+                } :
+                null;
+            }
+        }
         public List<MessageInfoViewModel> GetFilteredList(MessageInfoBindingModel model)
         {
             if (model == null)

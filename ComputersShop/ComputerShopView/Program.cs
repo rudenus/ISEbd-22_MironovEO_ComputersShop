@@ -42,15 +42,8 @@ namespace ComputersShopView
         [STAThread]
         static void Main()
         {
-            //Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             var mailSender = Container.Resolve<AbstractMailWorker>();
-            //var MailLogin = ConfigurationManager.AppSettings["MailLogin"];
-            //var MailPassword = ConfigurationManager.AppSettings["MailPassword"];
-            //var SmtpClientHost = ConfigurationManager.AppSettings["SmtpClientHost"];
-            //var SmtpClientPort = Convert.ToInt32(ConfigurationManager.AppSettings["SmtpClientPort"]);
-            //var PopHost = ConfigurationManager.AppSettings["PopHost"];
-            //var PopPort = Convert.ToInt32(ConfigurationManager.AppSettings["PopPort"]);
             mailSender.MailConfig(new MailConfigBindingModel
             {
                 MailLogin = ConfigurationManager.AppSettings["MailLogin"],
