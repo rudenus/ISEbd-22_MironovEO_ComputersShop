@@ -23,9 +23,11 @@ namespace ComputersShopView
         private readonly IReportLogic _reportLogic;
         private readonly WorkModeling _workModeling;
         private readonly IImplementerLogic _implementerLogic;
-        public FormMain(IOrderLogic orderLogic, IReportLogic reportLogic, WorkModeling workModeling, IImplementerLogic implementerLogic)
+        private readonly IBackUpLogic _backUpLogic;
+        public FormMain(IOrderLogic orderLogic, IReportLogic reportLogic, WorkModeling workModeling, IImplementerLogic implementerLogic, IBackUpLogic backUpLogic)
         {
             InitializeComponent();
+            _backUpLogic = backUpLogic;
             _implementerLogic = implementerLogic;
             _workModeling = workModeling;
             _reportLogic = reportLogic;
@@ -39,16 +41,7 @@ namespace ComputersShopView
         {
             try
             {
-                var list = _orderLogic.Read(null);
-                if (list != null)
-                {
-                    dataGridView.Rows.Clear();
-                    foreach (var order in list)
-                    {
-                        dataGridView.Rows.Add(new object[] { order.Id, order.ComputerId, order.ComputerName,order.Count, order.ClientFIO, order.ImplementerFIO, order.Sum,
-                            order.Status,order.DateCreate, order.DateImplement});
-                    }
-                }
+                Program.ConfigGrid(_orderLogic.Read(null), dataGridView);
             }
             catch (Exception ex)
             {
@@ -187,6 +180,31 @@ namespace ComputersShopView
         {
             var form = Program.Container.Resolve<FormMail>();
             form.ShowDialog();
+        }
+        private void createBackUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_backUpLogic != null)
+                {
+                    var fbd = new FolderBrowserDialog();
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        _backUpLogic.CreateBackUp(new
+                        BackUpSaveBinidngModel
+                        { FolderName = fbd.SelectedPath });
+                        MessageBox.Show("Бекап создан", "Сообщение",
+                       MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
+
+
         }
     }
 

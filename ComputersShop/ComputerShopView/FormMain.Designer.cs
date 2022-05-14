@@ -49,6 +49,7 @@
             this.ColumnSum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDateCreate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createBackUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ColumnDateEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
             this.buttonIssuedOrder = new System.Windows.Forms.Button();
@@ -65,7 +66,8 @@
             this.справкаToolStripMenuItem,
             this.отчетыToolStripMenuItem,
             this.запускРаботToolStripMenuItem,
-            this.письмаToolStripMenuItem});
+            this.письмаToolStripMenuItem,
+            this.createBackUpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 3, 0, 3);
@@ -288,6 +290,13 @@
             this.письмаToolStripMenuItem.Text = "Письма";
             this.письмаToolStripMenuItem.Click += new System.EventHandler(this.письмаToolStripMenuItem_Click);
             // 
+            // createBackUpToolStripMenuItem
+            // 
+            this.createBackUpToolStripMenuItem.Name = "createBackUpToolStripMenuItem";
+            this.createBackUpToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.createBackUpToolStripMenuItem.Text = "Создать бекап";
+            this.createBackUpToolStripMenuItem.Click += new System.EventHandler(this.createBackUpToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -339,6 +348,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateCreate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateEnd;
         private System.Windows.Forms.ToolStripMenuItem письмаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createBackUpToolStripMenuItem;
     }
 }
 
