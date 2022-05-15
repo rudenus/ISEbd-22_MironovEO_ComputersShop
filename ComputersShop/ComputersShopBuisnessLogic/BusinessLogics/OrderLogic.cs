@@ -17,6 +17,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
         private readonly IOrderStorage _orderStorage;
         private readonly IWareHouseStorage _wareHouseStorage;
         private readonly IComputerStorage _computerStorage;
+        private readonly object locker = new object();
         public OrderLogic(IOrderStorage orderStorage, IWareHouseStorage wareHouseStorage, IComputerStorage computerStorage)
         {
             _orderStorage = orderStorage;
@@ -49,33 +50,45 @@ namespace ComputerShopBusinessLogic.BusinessLogics
         }
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
-            var order = _orderStorage.GetElement(new OrderBindingModel
+            lock (locker)
             {
-                Id = model.OrderId
-            });
-            if (order == null)
-            {
-                throw new Exception("Заказ не найден");
+                OrderViewModel order = _orderStorage.GetElement(new OrderBindingModel
+                {
+                    Id = model.OrderId
+                });
+                if (order == null)
+                {
+                    throw new Exception("Не найден заказ");
+                }
+                if (order.Status != OrderStatus.Принят && order.Status != OrderStatus.Требуются_материалы)
+                {
+                    throw new Exception("Заказ еще не принят");
+                }
+
+                var updateBindingModel = new OrderBindingModel
+                {
+                    Id = order.Id,
+                    ComputerId = order.ComputerId,
+                    ImplementerId = model.ImplementerId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    ClientId = order.ClientId
+                };
+
+                if (!_wareHouseStorage.TakeFromWareHouses(_computerStorage.GetElement
+                    (new ComputerBindingModel { Id = order.ComputerId }).ComputerComponents, order.Count))
+                {
+                    updateBindingModel.Status = OrderStatus.Требуются_материалы;
+                }
+                else
+                {
+                    updateBindingModel.DateImplement = DateTime.Now;
+                    updateBindingModel.Status = OrderStatus.Выполняется;
+
+                }
+                _orderStorage.Update(updateBindingModel);
             }
-            if (order.Status != OrderStatus.Принят)
-            {
-                throw new Exception("Заказ не в статусе \"Принят\"");
-            }
-            if (!_wareHouseStorage.TakeFromWareHouses(_computerStorage.GetElement(new ComputerBindingModel { Id = order.ComputerId }).ComputerComponents, order.Count))
-            {
-                throw new Exception("Недостаточно материалов");
-            }
-            _orderStorage.Update(new OrderBindingModel
-            {
-                Id = order.Id,
-                ComputerId = order.ComputerId,
-                ImplementerId = model.ImplementerId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется
-            });
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
@@ -121,6 +134,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
+                ImplementerId = order.ImplementerId,
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Выдан
             });

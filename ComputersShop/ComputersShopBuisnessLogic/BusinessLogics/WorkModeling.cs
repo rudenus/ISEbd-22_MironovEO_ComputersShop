@@ -1,6 +1,7 @@
 ﻿using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.BusinessLogicContracts;
 using ComputerShopContracts.Enums;
+using ComputerShopContracts.StoragesContracts;
 using ComputerShopContracts.ViewModels;
 using ComputersShopContracts.BusinessLogicContracts;
 using ComputersShopContracts.ViewModels;
@@ -17,26 +18,28 @@ namespace ComputersShopBuisnessLogic.BusinessLogics
     public class WorkModeling : IWorkProcess
     {
         private IOrderLogic _orderLogic;
+        private IOrderStorage _orderStorage;
         private readonly Random rnd;
-        public WorkModeling()
+        public WorkModeling( IOrderStorage orderStorage)
         {
+            _orderStorage = orderStorage;
+            
             rnd = new Random(1000);
         }
         /// <summary>
         /// Запуск работ
         /// </summary>
-        public void DoWork(IImplementerLogic implementerLogic, IOrderLogic
-        orderLogic)
+        public void DoWork(IImplementerLogic implementerLogic, IOrderLogic orderLogic)
         {
-            _orderLogic = orderLogic;
+            
             var implementers = implementerLogic.Read(null);
+            _orderLogic = orderLogic;
             ConcurrentBag<OrderViewModel> orders = new(_orderLogic.Read(new
             OrderBindingModel
             { SearchStatus = OrderStatus.Принят }));
             foreach (var implementer in implementers)
             {
-                Task.Run(async () => await WorkerWorkAsync(implementer,
-                orders));
+                Task.Run(async () => await WorkerWorkAsync(implementer, orders));
             }
         }
         /// <summary>
@@ -44,49 +47,62 @@ namespace ComputersShopBuisnessLogic.BusinessLogics
         /// </summary>
         /// <param name="implementer"></param>
         /// <param name="orders"></param>
-        private async Task WorkerWorkAsync(ImplementerViewModel implementer,
-        ConcurrentBag<OrderViewModel> orders)
+        private async Task WorkerWorkAsync(ImplementerViewModel implementer, ConcurrentBag<OrderViewModel> orders)
         {
             // ищем заказы, которые уже в работе (вдруг исполнителя прервали)
-            var runOrders = await Task.Run(() => _orderLogic.Read(new
-            OrderBindingModel
-            {
-                ImplementerId = implementer.Id,
-                Status = OrderStatus.Выполняется
-            }));
+            var runOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel { ImplementerId = implementer.Id }));
             foreach (var order in runOrders)
             {
                 // делаем работу заново
-                Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) *
-                order.Count);
-                _orderLogic.FinishOrder(new ChangeStatusBindingModel
-                {
-                    OrderId
-                = order.Id
-                });
+                Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
+                _orderLogic.FinishOrder(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
                 // отдыхаем
                 Thread.Sleep(implementer.PauseTime);
             }
+            var requiredMaterialsOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel
+            { ImplementerId = implementer.Id, Status = OrderStatus.Требуются_материалы }));
+
+            foreach (var order in requiredMaterialsOrders)
+            {
+                try
+                {
+                    _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel
+                    {
+                        OrderId = order.Id,
+                        ImplementerId = implementer.Id
+                    });
+
+                    var processedOrder = _orderStorage.GetElement(new OrderBindingModel
+                    {
+                        Id = order.Id
+                    });
+
+                    if (processedOrder.Status == OrderStatus.Требуются_материалы)
+                    {
+                        continue;
+                    }
+
+                    Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
+                    _orderLogic.FinishOrder(new ChangeStatusBindingModel { OrderId = order.Id , ImplementerId=implementer.Id});
+                    Thread.Sleep(implementer.PauseTime);
+                }
+                catch (Exception) { }
+            }
             await Task.Run(() =>
             {
-                while (!orders.IsEmpty)
+                foreach (var order in orders)
                 {
-                    if (orders.TryTake(out OrderViewModel order))
+                    // пытаемся назначить заказ на исполнителя
+                    try
                     {
-                        // пытаемся назначить заказ на исполнителя
-                        _orderLogic.TakeOrderInWork(new
-                        ChangeStatusBindingModel
-                        { OrderId = order.Id, ImplementerId = implementer.Id });
+                        _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
                         // делаем работу
-                        Thread.Sleep(implementer.WorkingTime *
-                        rnd.Next(1, 5) * order.Count);
-                        _orderLogic.FinishOrder(new
-                        ChangeStatusBindingModel
-                        { OrderId = order.Id,
-                        ImplementerId = implementer.Id});
+                        Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
+                        _orderLogic.FinishOrder(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
                         // отдыхаем
                         Thread.Sleep(implementer.PauseTime);
                     }
+                    catch (Exception) { }
                 }
             });
         }

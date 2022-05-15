@@ -208,7 +208,7 @@ namespace ComputerShopDatabseImplement.Implements
             }
         }
 
-        public bool TakeFromWareHouses(Dictionary<int, (string, int)> Components, int reinforcedCount)
+        public bool TakeFromWareHouses(Dictionary<int, (string, int)> components, int computerCount)
         {
             using (ComputerShopDatabase context = new ComputerShopDatabase())
             {
@@ -216,26 +216,26 @@ namespace ComputerShopDatabseImplement.Implements
                 {
                     try
                     {
-                        foreach (KeyValuePair<int, (string, int)> Component in Components)
+                        foreach (KeyValuePair<int, (string, int)> component in components)
                         {
-                            int requiredComponentCount = Component.Value.Item2 * reinforcedCount;
-                            IEnumerable<WareHouseComponent> WareHouseComponents = context.WareHouseComponents
-                                .Where(WareHouse => WareHouse.ComponentId == Component.Key);
-                            foreach (WareHouseComponent WareHouseComponent in WareHouseComponents)
+                            int requiredMaterialCount = component.Value.Item2 * computerCount;
+                            IEnumerable<WareHouseComponent> wareHouseComponents = context.WareHouseComponents
+                                .Where(storehouse => storehouse.ComponentId == component.Key);
+                            foreach (WareHouseComponent wareHousecomponent in wareHouseComponents)
                             {
-                                if (WareHouseComponent.Count <= requiredComponentCount)
+                                if (wareHousecomponent.Count <= requiredMaterialCount)
                                 {
-                                    requiredComponentCount -= WareHouseComponent.Count;
-                                    context.WareHouseComponents.Remove(WareHouseComponent);
+                                    requiredMaterialCount -= wareHousecomponent.Count;
+                                    context.WareHouseComponents.Remove(wareHousecomponent);
                                 }
                                 else
                                 {
-                                    WareHouseComponent.Count -= requiredComponentCount;
-                                    requiredComponentCount = 0;
+                                    wareHousecomponent.Count -= requiredMaterialCount;
+                                    requiredMaterialCount = 0;
                                     break;
                                 }
                             }
-                            if (requiredComponentCount != 0)
+                            if (requiredMaterialCount != 0)
                             {
                                 throw new Exception("Нехватка материалов на складе");
                             }
@@ -247,7 +247,7 @@ namespace ComputerShopDatabseImplement.Implements
                     catch
                     {
                         transaction.Rollback();
-                        throw;
+                        return false;
                     }
                 }
             }

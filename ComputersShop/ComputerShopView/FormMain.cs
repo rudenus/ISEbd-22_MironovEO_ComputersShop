@@ -43,6 +43,8 @@ namespace ComputersShopView
                 if (list != null)
                 {
                     dataGridView.Rows.Clear();
+                    dataGridView.Columns[0].Visible=false;
+                    dataGridView.Columns[1].Visible = false;
                     foreach (var order in list)
                     {
                         dataGridView.Rows.Add(new object[] { order.Id, order.ComputerId, order.ComputerName,order.Count, order.ClientFIO, order.ImplementerFIO, order.Sum,
