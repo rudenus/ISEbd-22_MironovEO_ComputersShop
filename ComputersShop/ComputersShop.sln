@@ -13,7 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopListImplement"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopFileImplement", "ComputersShopFileImplement\ComputersShopFileImplement.csproj", "{4E70DE84-5EBE-4CFB-AC4C-7A13913B2212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShopDatabseImplement", "ComputerShopDatabseImplement\ComputerShopDatabseImplement.csproj", "{2792F550-C605-49D0-A4F1-B340F2E80255}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShopDatabseImplement", "ComputerShopDatabseImplement\ComputerShopDatabseImplement.csproj", "{2792F550-C605-49D0-A4F1-B340F2E80255}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShopRestApi", "ComputerShopRestApi\ComputerShopRestApi.csproj", "{7EAE5CF8-C0F1-4D31-B2F4-DAB5D16DBE72}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShopClientApp", "ComputerShopClientApp\ComputerShopClientApp.csproj", "{988F3901-0BBC-4C90-AD90-69B66C2981AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShopAppWareHouse", "ComputerShopAppWareHouse\ComputerShopAppWareHouse.csproj", "{4602EC06-9485-4F16-9C0D-435D8B868A0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +51,18 @@ Global
 		{2792F550-C605-49D0-A4F1-B340F2E80255}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2792F550-C605-49D0-A4F1-B340F2E80255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2792F550-C605-49D0-A4F1-B340F2E80255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAE5CF8-C0F1-4D31-B2F4-DAB5D16DBE72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAE5CF8-C0F1-4D31-B2F4-DAB5D16DBE72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAE5CF8-C0F1-4D31-B2F4-DAB5D16DBE72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAE5CF8-C0F1-4D31-B2F4-DAB5D16DBE72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{988F3901-0BBC-4C90-AD90-69B66C2981AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{988F3901-0BBC-4C90-AD90-69B66C2981AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{988F3901-0BBC-4C90-AD90-69B66C2981AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{988F3901-0BBC-4C90-AD90-69B66C2981AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4602EC06-9485-4F16-9C0D-435D8B868A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4602EC06-9485-4F16-9C0D-435D8B868A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4602EC06-9485-4F16-9C0D-435D8B868A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4602EC06-9485-4F16-9C0D-435D8B868A0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

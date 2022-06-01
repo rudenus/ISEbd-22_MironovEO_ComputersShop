@@ -15,7 +15,7 @@ namespace ComputerShopDatabseImplement
             //Database.EnsureCreated();
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ComputerShopDatabaseHard;Trusted_Connection=True");
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ComputerShopDatabaseHard5;Trusted_Connection=True");
             }
             base.OnConfiguring(optionsBuilder);
             
@@ -26,5 +26,6 @@ namespace ComputerShopDatabseImplement
         public virtual DbSet<Order> Orders { set; get; }
         public virtual DbSet<WareHouse> WareHouses { get; set; }
         public virtual DbSet<WareHouseComponent> WareHouseComponents { get; set; }
+        public virtual DbSet<Client> Clients { set; get; }
     }
 }

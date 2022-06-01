@@ -8,6 +8,7 @@ using ComputersShopBuisnessLogic.BusinessLogics;
 using ComputersShopBuisnessLogic.OfficePackage;
 using ComputersShopBuisnessLogic.OfficePackage.Implements;
 using ComputersShopContracts.BusinessLogicContracts;
+using ComputersShopContracts.StoragesContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,10 @@ namespace ComputersShopView
           HierarchicalLifetimeManager());
             currentContainer.RegisterType<IWareHouseStorage, WareHouseStorage>(new
           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IClientLogic, ClientLogic>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IClientStorage, ClientStorage>(new
+            HierarchicalLifetimeManager());
             return currentContainer;
         }
     }
