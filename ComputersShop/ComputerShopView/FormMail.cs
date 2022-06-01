@@ -1,4 +1,5 @@
 ﻿using ComputersShopContracts.BusinessLogicContracts;
+using ComputersShopView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,13 +31,7 @@ namespace ComputerShopView
         {
             try
             {
-                var list = logic.Read(null);
-                if (list != null)
-                {
-                    dataGridViewMail.DataSource = list;
-                    dataGridViewMail.Columns[0].Visible = false;
-                    dataGridViewMail.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
+                Program.ConfigGrid(logic.Read(null), dataGridViewMail);
             }
             catch (Exception ex)
             {
