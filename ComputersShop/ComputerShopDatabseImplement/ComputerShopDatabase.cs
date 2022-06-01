@@ -15,11 +15,12 @@ namespace ComputerShopDatabseImplement
             //Database.EnsureCreated();
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Server=IS-429-00\SQLEXPRESS;Database=ComputerShopDatabase6lab+;Trusted_Connection=True");
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=ComputerShopDatabase6lab+;Trusted_Connection=True");
             }
             base.OnConfiguring(optionsBuilder);
             
         }
+        public virtual DbSet<MessageInfo>  MessageInfoes { get ; set; }
         public virtual DbSet<Component> Components { set; get; }
         public virtual DbSet<Computer> Computers { set; get; }
         public virtual DbSet<ComputerComponent> ComputerComponents { set; get; }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComputerShopDatabseImplement.Migrations
 {
     [DbContext(typeof(ComputerShopDatabase))]
-    [Migration("20220418044917_init")]
+    [Migration("20220501094122_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,6 +127,33 @@ namespace ComputerShopDatabseImplement.Migrations
                     b.ToTable("Implementers");
                 });
 
+            modelBuilder.Entity("ComputerShopDatabseImplement.Models.MessageInfo", b =>
+                {
+                    b.Property<string>("MessageId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("MessageInfoes");
+                });
+
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -188,6 +215,15 @@ namespace ComputerShopDatabseImplement.Migrations
                     b.Navigation("Computer");
                 });
 
+            modelBuilder.Entity("ComputerShopDatabseImplement.Models.MessageInfo", b =>
+                {
+                    b.HasOne("ComputerShopDatabseImplement.Models.Client", "Client")
+                        .WithMany("Messages")
+                        .HasForeignKey("ClientId");
+
+                    b.Navigation("Client");
+                });
+
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Order", b =>
                 {
                     b.HasOne("ComputerShopDatabseImplement.Models.Client", "Client")
@@ -215,6 +251,8 @@ namespace ComputerShopDatabseImplement.Migrations
 
             modelBuilder.Entity("ComputerShopDatabseImplement.Models.Client", b =>
                 {
+                    b.Navigation("Messages");
+
                     b.Navigation("Orders");
                 });
 
